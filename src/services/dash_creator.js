@@ -10,7 +10,7 @@ const client = new BedrockRuntimeClient({
     secretAccessKey: import.meta.env.VITE_SOME_ACCESS_KEY,
   },
 });
-console.log(import.meta.VITE_KeyId);
+
 export async function dashCreator(data, config) {
   const prompt = `
   Human: You are Highcharts Dashboard library transformer. Your task is to take data from user and return a Highcharts Dashboard config JSON beside of user request. Try to understand the data the user provided and return the maximum suitable chart type. You can use types like: line, spline, area, areaspline, column, bar, pie, scatter.  Depending on the data the user provided add title and description for accessibility. Always use "firstRowAsNames" as false.
