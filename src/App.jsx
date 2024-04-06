@@ -5,6 +5,7 @@ const App = () => {
   return (
     <>
       {/* // example of a dashboard with several widgets */}
+
       {/* <Root_dashboard /> */}
       <Parser />
     </>
