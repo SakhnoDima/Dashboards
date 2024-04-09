@@ -133,15 +133,6 @@ export const Campaigns_with_date = ({ rootData }) => {
   console.log(rootData);
   useEffect(() => {
     dataPool.connectors[0].options.data = rootData;
-    dataPool.connectors[0].options.dataModifier = {
-      type: "Range",
-      ranges: [
-        {
-          column: "Daily Budget",
-          minValue: "450",
-        },
-      ],
-    };
     Dashboards.board("container", {
       dataPool,
       editMode: {
