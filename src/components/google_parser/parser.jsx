@@ -1,23 +1,49 @@
 import { useEffect, useState } from "react";
 import PublicGoogleSheetsParser from "public-google-sheets-parser";
-
+import "./index.css";
 import { User_dashboard } from "../dashboards/user_dashboard";
 import { Forma } from "../form/new_form";
 
-const SHEET_ID = "1biCvz2yYY8P6e1Dfuw-ahYX7-rFpJtlXt2dVi76SLzY";
-const SHEET_NAME = {
+export const SHEET_ID = "1biCvz2yYY8P6e1Dfuw-ahYX7-rFpJtlXt2dVi76SLzY";
+export const SHEET_NAME = {
   firstTable: "Groceries",
   secondTable: "Coins",
   thirdTable: "list_3",
   fourthTable: "list_4",
+  fifthTable: "list_5",
 };
 
 export const Parser = () => {
   const [items, setItems] = useState("");
-  const [config, setConfig] = useState({});
+  const [config, setConfig] = useState({
+    chart: {
+      type: "bar",
+    },
+    title: {
+      text: "Fruit Consumption",
+    },
+    xAxis: {
+      categories: ["Apples", "Bananas", "Oranges"],
+    },
+    yAxis: {
+      title: {
+        text: "Fruit eaten",
+      },
+    },
+    series: [
+      {
+        name: "Jane",
+        data: [1, 0, 4],
+      },
+      {
+        name: "John",
+        data: [5, 7, 3],
+      },
+    ],
+  });
 
   useEffect(() => {
-    const options = { sheetName: SHEET_NAME.firstTable };
+    const options = { sheetName: SHEET_NAME.secondTable };
     const parser = new PublicGoogleSheetsParser(SHEET_ID, options);
     parser.parse().then((data) => {
       console.log(data);
