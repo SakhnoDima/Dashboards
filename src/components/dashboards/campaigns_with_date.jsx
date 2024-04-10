@@ -37,7 +37,7 @@ const rootLayOut = {
 };
 const components = [
   {
-    cell: "main-data-grid",
+    renderTo: "main-data-grid",
     connector: {
       id: "main-data-grid-id",
     },
@@ -55,55 +55,6 @@ const components = [
           },
         },
       },
-    },
-  },
-  {
-    renderTo: "date-widget",
-    type: "Highcharts",
-    connector: {
-      id: "main-data-grid-id",
-      columnAssignment: [
-        {
-          seriesId: "daily-price",
-          data: ["Creation Date", "Daily Budget"],
-        },
-      ],
-    },
-    sync: {
-      highlight: true,
-    },
-    chartOptions: {
-      chart: {
-        animation: false,
-        type: "line",
-      },
-      title: {
-        text: "Daily price",
-      },
-      series: [
-        {
-          id: "daily-price",
-          name: "Daily Budget",
-        },
-      ],
-      tooltip: {
-        shared: true,
-        split: true,
-        stickOnContact: true,
-      },
-      xAxis: {
-        type: "datetime",
-        accessibility: {
-          description: "Date and time",
-        },
-      },
-      yAxis: [
-        {
-          title: {
-            text: "Price",
-          },
-        },
-      ],
     },
   },
 ];
@@ -129,9 +80,23 @@ const dataPool = {
   ],
 };
 
-export const Campaigns_with_date = ({ rootData }) => {
+export const Campaigns_with_date = ({ rootData, widget }) => {
   console.log(rootData);
+
   useEffect(() => {
+    if (Object.keys(widget).length) {
+      console.log(1);
+      const indx = components.findIndex(
+        (elm) => elm.renderTo === "date-widget"
+      );
+      console.log(indx);
+      if (indx >= 0) {
+        components.splice(1, indx);
+        console.log(components);
+      }
+      components.push(widget);
+    }
+    console.log(components);
     dataPool.connectors[0].options.data = rootData;
     Dashboards.board("container", {
       dataPool,
@@ -145,7 +110,7 @@ export const Campaigns_with_date = ({ rootData }) => {
       gui: rootLayOut,
       components,
     });
-  }, [rootData, rootLayOut, components]);
+  }, [rootData, widget]);
 
   return <div id="container" />;
 };
