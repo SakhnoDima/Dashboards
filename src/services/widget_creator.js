@@ -74,7 +74,6 @@ const initConfig = {
 };
 
 const widget_creator = async (message) => {
-  console.log(message);
   const prompt = `You are a Highcharts chart JSON transformer. Your task is to take a Highcharts chart JSON and modify it based on a user request. 
 
   The input will be provided in the following format:
