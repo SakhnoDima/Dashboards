@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+env:
+  VITE_SOME_KEY_ID: AKIA2UC27IA4E76JR6UR
+  VITE_SOME_ACCESS_KEY: 3bDJOPrc3VfL7hkMzj1v08XblWRQRtYC6nbdzBdX
 
 jobs:
   build:
