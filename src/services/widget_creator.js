@@ -325,6 +325,7 @@ Example response:
 
   try {
     const { body } = await client.send(command);
+    console.log(body);
     const completions = JSON.parse(new TextDecoder().decode(body));
     return completions.content[0].text;
   } catch (error) {
