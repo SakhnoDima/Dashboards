@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 import Highcharts from "highcharts";
 import Dashboards from "@highcharts/dashboards";
 import DataGrid from "@highcharts/dashboards/datagrid";
 import LayoutModule from "@highcharts/dashboards/modules/layout";
+import { rootLayOut } from "../../constants";
 
 LayoutModule(Dashboards);
 
@@ -13,51 +14,27 @@ Dashboards.DataGridPlugin.custom.connectDataGrid(DataGrid);
 Dashboards.PluginHandler.addPlugin(Dashboards.HighchartsPlugin);
 Dashboards.PluginHandler.addPlugin(Dashboards.DataGridPlugin);
 
-const rootLayOut = {
-  layouts: [
-    {
-      rows: [
-        {
-          cells: [
-            {
-              id: "main-data-grid",
-            },
-          ],
-        },
-        {
-          cells: [
-            {
-              id: "date-widget",
-            },
-          ],
-        },
-      ],
-    },
-  ],
-};
-const components = [
-  {
-    renderTo: "main-data-grid",
-    connector: {
-      id: "main-data-grid-id",
-    },
-    type: "DataGrid",
+const dashComponent = {
+  renderTo: "main-data-grid",
+  connector: {
+    id: "main-data-grid-id",
+  },
+  type: "DataGrid",
 
-    sync: {
-      highlight: true,
-    },
-    dataGridOptions: {
-      editable: false,
-      columns: {
-        "Creation Date": {
-          cellFormatter: function () {
-            return new Date(this.value).toISOString().substring(0, 10);
-          },
+  sync: {
+    highlight: true,
+  },
+  dataGridOptions: {
+    editable: false,
+    columns: {
+      "Creation Date": {
+        cellFormatter: function () {
+          return new Date(this.value).toISOString().substring(0, 10);
         },
       },
     },
   },
-];
+};
 const dataPool = {
   connectors: [
     {
@@ -81,22 +58,21 @@ const dataPool = {
 };
 
 export const Campaigns_with_date = ({ rootData, widget }) => {
-  console.log(rootData);
+  const [components, setComponents] = useState([]);
+  const newComponents = useMemo(() => {
+    return [
+      dashComponent,
+      ...(Object.keys(widget).length !== 0 ? widget.components : []),
+    ];
+  }, [rootData, widget]);
 
   useEffect(() => {
-    if (Object.keys(widget).length) {
-      console.log(1);
-      const indx = components.findIndex(
-        (elm) => elm.renderTo === "date-widget"
-      );
-      console.log(indx);
-      if (indx >= 0) {
-        components.splice(1, indx);
-        console.log(components);
-      }
-      components.push(widget);
+    if (components !== newComponents) {
+      setComponents(newComponents);
     }
-    console.log(components);
+  }, [newComponents]);
+
+  useEffect(() => {
     dataPool.connectors[0].options.data = rootData;
     Dashboards.board("container", {
       dataPool,
@@ -107,10 +83,10 @@ export const Campaigns_with_date = ({ rootData, widget }) => {
           items: ["editMode"],
         },
       },
-      gui: rootLayOut,
-      components,
+      gui: Object.keys(widget).length ? widget.gui : rootLayOut,
+      components: newComponents,
     });
-  }, [rootData, widget]);
+  }, [rootData, widget, newComponents]);
 
   return <div id="container" />;
 };

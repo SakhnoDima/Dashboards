@@ -2,6 +2,7 @@ import {
   BedrockRuntimeClient,
   InvokeModelCommand,
 } from "@aws-sdk/client-bedrock-runtime";
+import { loadedColumns, rootLayOut } from "../constants";
 
 const client = new BedrockRuntimeClient({
   region: "us-east-1",
@@ -12,7 +13,7 @@ const client = new BedrockRuntimeClient({
 });
 
 const initConfig = {
-  renderTo: "date-widget",
+  renderTo: "first-widget",
   type: "Highcharts",
   connector: {
     id: "main-data-grid-id",
@@ -78,10 +79,13 @@ const widget_creator = async (message) => {
 
   The input will be provided in the following format:
 
-  To create an object you must use only these column values:"Publisher", "Campaign Name", "Creation Date","Daily Budget", "Imp", "Clicks".
+  To create an object you must use only these column values: ${Object.values(
+    loadedColumns
+  )}.
   You can use types like: line, spline, area, areaspline, column, bar, pie, scatter.
   Depending on the data the user provided add title, subtitle and description for accessibility.
-  You should output a modified Highcharts chart JSON object based on the user's request. If the request is not clear or cannot be fulfilled, you should return the original chart JSON with an error message.
+  You should output a modified Highcharts chart JSON object based on the user's request.
+  If the request is not clear or cannot be fulfilled, you should return the original chart JSON with an error message.
   
   Some examples of user requests could be:
 
@@ -99,133 +103,199 @@ Respond only with a JSON object containing the modified chart JSON and no other 
 Example input:
 <original-json>
 {
-  "renderTo": "date-widget",
-  "type": "Highcharts",
-  "connector": {
-    "id": "main-data-grid-id",
-    "columnAssignment": [
-      {
-        "seriesId": "chartId",
-        "data": [],
+  "components": [
+    {
+      "renderTo": "first-widget",
+      "type": "Highcharts",
+      "connector": {
+        "id": "main-data-grid-id",
+        "columnAssignment": [
+          {
+            "seriesId": "chartId",
+            "data": []
+          }
+        ]
       },
-    ],
-  },
-  "sync": {
-    "highlight": true,
-  },
-  "chartOptions": {
-    "chart": {
-      "animation": false,
-      "type": "line",
-    },
-    "title": {
-      "text": "",
-    },
-    "subtitle": {
-      "text": ''
-    },
-    "series": [
-      {
-        "id": "chartId",
-        "name": "",
+      "sync": {
+        "highlight": true
       },
-    ],
-    "tooltip": {
-      "shared": true,
-      "split": true,
-      "stickOnContact": true,
-    },
-     "lang": {
-     "accessibility": {
-    "chartContainerLabel": ""
-     }
-    },
-    "accessibility": {
-    "description": ""
-    },
-    "xAxis": {
-      "type": "datetime",
-      "accessibility": {
-        "description": "",
-      },
-    },
-    "yAxis": [
-      {
-        "title": {
-          "text": "",
+      "chartOptions": {
+        "chart": {
+          "animation": false,
+          "type": "line"
         },
-      },
-    ],
-  },
+        "title": {
+          "text": ""
+        },
+        "subtitle": {
+          "text": ""
+        },
+        "series": [
+          {
+            "id": "chartId",
+            "name": ""
+          }
+        ],
+        "tooltip": {
+          "shared": true,
+          "split": true,
+          "stickOnContact": true
+        },
+        "lang": {
+          "accessibility": {
+            "chartContainerLabel": ""
+          }
+        },
+        "accessibility": {
+          "description": ""
+        },
+        "xAxis": {
+          "type": "datetime",
+          "accessibility": {
+            "description": ""
+          }
+        },
+        "yAxis": [
+          {
+            "title": {
+              "text": ""
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "gui": {
+    "layouts": [
+      {
+        "rows": [
+          {
+            "cells": [
+              {
+                "id": "main-data-grid"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "id": "first-widget"
+              }, 
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }
+
 </original-json>
-<user-request>Create chart use Creation Date and Daily Budget </user-request>
+<user-request>Create chart use "Creation Date" and "Daily Budget" for one series and "Creation Date" and "Clicks" for second series</user-request>
 
 Example response:
- {
-  "renderTo": "date-widget",
-  "type": "Highcharts",
-  "connector": {
-    "id": "main-data-grid-id",
-    "columnAssignment": [
-      {
-        "seriesId": "daily-price",
-        "data": ["Creation Date", "Daily Budget"],
+{
+  "components": [{
+    "renderTo": "first-widget",
+    "type": "Highcharts",
+    "connector": {
+      "id": "main-data-grid-id",
+      "columnAssignment": [
+        {
+          "seriesId": "daily-budget",
+          "data": ["Creation Date", "Daily Budget"],
+        },
+        {
+          "seriesId": "clicks",
+          "data": ["Creation Date", "Clicks"],
+        },
+      ],
+    },
+    s"ync: {
+      "highlight": true,
+    },
+    "chartOptions": {
+      "chart": {
+        "animation": false,
+        "type": "line",
       },
-    ],
-  },
-  "sync": {
-    "highlight": true,
-  },
-  "chartOptions": {
-    "chart": {
-      "animation": false,
-      "type": "line",
-    },
-    "title": {
-      "text": "Daily price",
-    },
-     "subtitle": {
-       "text": 'Daily budget by day'
-    },
-    "series": [
-      {
-        "id": "daily-price",
-        "name": "Daily Budget",
+      "title": {
+        "text": "Daily Budget and Clicks",
       },
-    ],
-    "tooltip": {
-      "shared": true,
-      "split": true,
-      "stickOnContact": true,
-    },
-      lang: {
-    "accessibility": {
-    "chartContainerLabel": "Daily Budget"
-     }
-    },
-    accessibility: {
-    description: "Еhe graph shows the dependence of the daily budget on the specified days"
-    },
-    "xAxis": {
-      "type": "datetime",
-      "accessibility": {
-        "description": "Date and time",
+      "subtitle": {
+        "text": "Daily budget and clicks by creation date",
       },
-    },
-    "yAxis": [
-      {
-        "title": {
-          "text": "Price",
+      "series": [
+        {
+          "id": "daily-budget",
+          "name": "Daily Budget",
+          "yAxis": 1,
+        },
+      ],
+      "tooltip": {
+        "shared": true,
+        "split": true,
+        "stickOnContact": true,
+      },
+      "lang": {
+        "accessibility": {
+          "chartContainerLabel": "Daily budget and clicks",
         },
       },
-    ],
-  },
+      "accessibility": {
+        "description":
+          "The graph shows the dependence of the daily budget and the number of clicks on the creation date.",
+      },
+      "xAxis": {
+        "type": "datetime",
+        "accessibility": {
+          "description": "Creation date",
+        },
+      },
+      "yAxis": [
+        {
+          "title": {
+            "text": "Daily Budget",
+          },
+        },
+        {
+          "title": {
+            "text": "Clicks",
+          },
+          "opposite": true,
+        },
+      ],
+    },
+  }],
+  "gui": {
+    "layouts": [
+      {
+        "rows": [
+          {
+            "cells": [
+              {
+                "id": "main-data-grid"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "id": "first-widget"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }
 </instructions>
 
 <original-json>
-${JSON.stringify(initConfig)}
+{
+  components:[ ${JSON.stringify(initConfig)}],
+  gui: ${JSON.stringify(rootLayOut)}
+}
 </original-json>
 <user-request>${message}</user-request>
 
