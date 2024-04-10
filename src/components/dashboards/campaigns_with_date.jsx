@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 import Highcharts from "highcharts";
 import Dashboards from "@highcharts/dashboards";
 import DataGrid from "@highcharts/dashboards/datagrid";
 import LayoutModule from "@highcharts/dashboards/modules/layout";
+import { rootLayOut } from "../../constants";
 
 LayoutModule(Dashboards);
 
@@ -13,100 +14,27 @@ Dashboards.DataGridPlugin.custom.connectDataGrid(DataGrid);
 Dashboards.PluginHandler.addPlugin(Dashboards.HighchartsPlugin);
 Dashboards.PluginHandler.addPlugin(Dashboards.DataGridPlugin);
 
-const rootLayOut = {
-  layouts: [
-    {
-      rows: [
-        {
-          cells: [
-            {
-              id: "main-data-grid",
-            },
-          ],
-        },
-        {
-          cells: [
-            {
-              id: "date-widget",
-            },
-          ],
-        },
-      ],
-    },
-  ],
-};
-const components = [
-  {
-    cell: "main-data-grid",
-    connector: {
-      id: "main-data-grid-id",
-    },
-    type: "DataGrid",
+const dashComponent = {
+  renderTo: "main-data-grid",
+  connector: {
+    id: "main-data-grid-id",
+  },
+  type: "DataGrid",
 
-    sync: {
-      highlight: true,
-    },
-    dataGridOptions: {
-      editable: false,
-      columns: {
-        "Creation Date": {
-          cellFormatter: function () {
-            return new Date(this.value).toISOString().substring(0, 10);
-          },
+  sync: {
+    highlight: true,
+  },
+  dataGridOptions: {
+    editable: false,
+    columns: {
+      "Creation Date": {
+        cellFormatter: function () {
+          return new Date(this.value).toISOString().substring(0, 10);
         },
       },
     },
   },
-  {
-    renderTo: "date-widget",
-    type: "Highcharts",
-    connector: {
-      id: "main-data-grid-id",
-      columnAssignment: [
-        {
-          seriesId: "daily-price",
-          data: ["Creation Date", "Daily Budget"],
-        },
-      ],
-    },
-    sync: {
-      highlight: true,
-    },
-    chartOptions: {
-      chart: {
-        animation: false,
-        type: "line",
-      },
-      title: {
-        text: "Daily price",
-      },
-      series: [
-        {
-          id: "daily-price",
-          name: "Daily Budget",
-        },
-      ],
-      tooltip: {
-        shared: true,
-        split: true,
-        stickOnContact: true,
-      },
-      xAxis: {
-        type: "datetime",
-        accessibility: {
-          description: "Date and time",
-        },
-      },
-      yAxis: [
-        {
-          title: {
-            text: "Price",
-          },
-        },
-      ],
-    },
-  },
-];
+};
 const dataPool = {
   connectors: [
     {
@@ -129,8 +57,21 @@ const dataPool = {
   ],
 };
 
-export const Campaigns_with_date = ({ rootData }) => {
-  console.log(rootData);
+export const Campaigns_with_date = ({ rootData, widget }) => {
+  const [components, setComponents] = useState([]);
+  const newComponents = useMemo(() => {
+    return [
+      dashComponent,
+      ...(Object.keys(widget).length !== 0 ? widget.components : []),
+    ];
+  }, [rootData, widget]);
+
+  useEffect(() => {
+    if (components !== newComponents) {
+      setComponents(newComponents);
+    }
+  }, [newComponents]);
+
   useEffect(() => {
     dataPool.connectors[0].options.data = rootData;
     Dashboards.board("container", {
@@ -142,10 +83,10 @@ export const Campaigns_with_date = ({ rootData }) => {
           items: ["editMode"],
         },
       },
-      gui: rootLayOut,
-      components,
+      gui: Object.keys(widget).length ? widget.gui : rootLayOut,
+      components: newComponents,
     });
-  }, [rootData, rootLayOut, components]);
+  }, [rootData, widget, newComponents]);
 
   return <div id="container" />;
 };
