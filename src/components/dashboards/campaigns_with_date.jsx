@@ -59,6 +59,7 @@ const dataPool = {
 
 export const Campaigns_with_date = ({ rootData, widget }) => {
   const [components, setComponents] = useState([]);
+
   const newComponents = useMemo(() => {
     return [
       dashComponent,

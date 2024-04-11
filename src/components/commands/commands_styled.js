@@ -12,8 +12,9 @@ export const Button = styled.button`
   cursor: pointer;
   background-color: inherit;
   border: 2px solid black;
+  border-radius: 8px;
   &:hover {
-    background-color: rgb(57, 57, 57);
+    background-color: darkgray;
     color: white;
   }
 `;
