@@ -42,6 +42,9 @@ const initConfig = {
       {
         id: "daily-price",
         name: "Daily Budget",
+        dataSorting: {
+          enabled: false,
+        },
       },
     ],
     tooltip: {
@@ -58,6 +61,7 @@ const initConfig = {
       description: ``,
     },
     xAxis: {
+      reversed: false,
       type: "datetime",
       accessibility: {
         description: "",
@@ -95,6 +99,7 @@ const widget_creator = async (message) => {
   You can use types like: line, spline, area, areaspline, column, bar, pie, scatter.
   Depending on the data the user provided add title, subtitle and description for accessibility.
   You should output a modified Highcharts chart JSON object based on the user's request.
+  To manipulate the sorting order, set the option dataSorting.enabled.true in series for descending and for ascending also add xAxis.reversed.true options.
   If the request is not clear or cannot be fulfilled, you should return the original chart JSON with an error message.
   
   Some examples of user requests could be:
@@ -143,7 +148,10 @@ Example input:
         "series": [
           {
             "id": "chartId",
-            "name": ""
+            "name": "",
+            "dataSorting": {
+                "enabled": false,
+              },
           }
         ],
         "tooltip": {
@@ -160,6 +168,7 @@ Example input:
           "description": ""
         },
         "xAxis": {
+          "reversed": false,
           "type": "datetime",
           "accessibility": {
             "description": ""
@@ -212,7 +221,7 @@ Example input:
 
 
 </original-json>
-<user-request>Create chart use "Creation Date" and "Daily Budget" for one series and "Creation Date" and "Clicks" for second series</user-request>
+<user-request>Create chart use "Creation Date" and "Daily Budget" for one series and "Creation Date" and "Clicks" for second series </user-request>
 
 Example response:
 {
@@ -229,7 +238,8 @@ Example response:
           },
           {
             "seriesId": "clicks",
-            "data": ["Creation Date", "Clicks"]
+            "data": ["Creation Date", "Clicks"],
+           
           }
         ]
       },

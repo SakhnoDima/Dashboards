@@ -7,9 +7,9 @@ import { loadedColumns } from "./../../constants/index.js";
 import { Commands } from "../commands/commands.jsx";
 
 export const Chart = () => {
+  const [loading, setLoading] = useState(false);
   const [inputData, setInputData] = useState({});
   const [widgets, setWidget] = useState({});
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setInputData(parser(loadedColumns));
@@ -31,3 +31,5 @@ export const Chart = () => {
     </>
   );
 };
+
+// Create ascending column chart use Creation Date" and "Daily Budget"
