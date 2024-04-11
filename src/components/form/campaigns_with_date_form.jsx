@@ -3,9 +3,8 @@ import PropTypes from "prop-types";
 import { StyledForm } from "./styles_forma";
 import { widget_creator } from "../../services";
 
-export const WidgetCreator = ({ setWidget }) => {
+export const WidgetCreator = ({ setWidget, loading, setLoading }) => {
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
