@@ -70,11 +70,21 @@ const initConfig = {
         },
       },
     ],
+    plotOptions: {
+      series: {
+        animation: {
+          duration: 2000,
+        },
+        marker: {
+          enabled: false,
+        },
+        lineWidth: 2,
+      },
+    },
   },
 };
 
 const widget_creator = async (message) => {
-  console.log(message);
   const prompt = `You are a Highcharts chart JSON transformer. Your task is to take a Highcharts chart JSON and modify it based on a user request. 
 
   The input will be provided in the following format:
@@ -161,7 +171,18 @@ Example input:
               "text": ""
             }
           }
-        ]
+        ],
+        "plotOptions": {
+          "series": {
+            "animation": {
+              "duration": 2000
+            },
+            "marker": {
+              "enabled": false
+            },
+            "lineWidth": 2
+          }
+        }
       }
     }
   ],
@@ -180,7 +201,7 @@ Example input:
             "cells": [
               {
                 "id": "first-widget"
-              }, 
+              }
             ]
           }
         ]
@@ -189,83 +210,96 @@ Example input:
   }
 }
 
+
 </original-json>
 <user-request>Create chart use "Creation Date" and "Daily Budget" for one series and "Creation Date" and "Clicks" for second series</user-request>
 
 Example response:
 {
-  "components": [{
-    "renderTo": "first-widget",
-    "type": "Highcharts",
-    "connector": {
-      "id": "main-data-grid-id",
-      "columnAssignment": [
-        {
-          "seriesId": "daily-budget",
-          "data": ["Creation Date", "Daily Budget"],
-        },
-        {
-          "seriesId": "clicks",
-          "data": ["Creation Date", "Clicks"],
-        },
-      ],
-    },
-    s"ync: {
-      "highlight": true,
-    },
-    "chartOptions": {
-      "chart": {
-        "animation": false,
-        "type": "line",
-      },
-      "title": {
-        "text": "Daily Budget and Clicks",
-      },
-      "subtitle": {
-        "text": "Daily budget and clicks by creation date",
-      },
-      "series": [
-        {
-          "id": "daily-budget",
-          "name": "Daily Budget",
-          "yAxis": 1,
-        },
-      ],
-      "tooltip": {
-        "shared": true,
-        "split": true,
-        "stickOnContact": true,
-      },
-      "lang": {
-        "accessibility": {
-          "chartContainerLabel": "Daily budget and clicks",
-        },
-      },
-      "accessibility": {
-        "description":
-          "The graph shows the dependence of the daily budget and the number of clicks on the creation date.",
-      },
-      "xAxis": {
-        "type": "datetime",
-        "accessibility": {
-          "description": "Creation date",
-        },
-      },
-      "yAxis": [
-        {
-          "title": {
-            "text": "Daily Budget",
+  "components": [
+    {
+      "renderTo": "first-widget",
+      "type": "Highcharts",
+      "connector": {
+        "id": "main-data-grid-id",
+        "columnAssignment": [
+          {
+            "seriesId": "daily-budget",
+            "data": ["Creation Date", "Daily Budget"]
           },
+          {
+            "seriesId": "clicks",
+            "data": ["Creation Date", "Clicks"]
+          }
+        ]
+      },
+      "sync": {
+        "highlight": true
+      },
+      "chartOptions": {
+        "chart": {
+          "animation": false,
+          "type": "line"
         },
-        {
-          "title": {
-            "text": "Clicks",
+        "title": {
+          "text": "Daily Budget and Clicks"
+        },
+        "subtitle": {
+          "text": "Daily budget and clicks by creation date"
+        },
+        "series": [
+          {
+            "id": "daily-budget",
+            "name": "Daily Budget",
+            "yAxis": 1
+          }
+        ],
+        "tooltip": {
+          "shared": true,
+          "split": true,
+          "stickOnContact": true
+        },
+        "lang": {
+          "accessibility": {
+            "chartContainerLabel": "Daily budget and clicks"
+          }
+        },
+        "accessibility": {
+          "description": "The graph shows the dependence of the daily budget and the number of clicks on the creation date."
+        },
+        "xAxis": {
+          "type": "datetime",
+          "accessibility": {
+            "description": "Creation date"
+          }
+        },
+        "yAxis": [
+          {
+            "title": {
+              "text": "Daily Budget"
+            }
           },
-          "opposite": true,
-        },
-      ],
-    },
-  }],
+          {
+            "title": {
+              "text": "Clicks"
+            },
+            "opposite": true
+          }
+        ],
+        "plotOptions": {
+          "series": {
+            "animation": {
+              "duration": 2000
+            },
+            "marker": {
+              "enabled": false
+            },
+            "lineWidth": 2
+          }
+        }
+      }
+    }
+  ],
   "gui": {
     "layouts": [
       {
@@ -289,6 +323,7 @@ Example response:
     ]
   }
 }
+
 </instructions>
 
 <original-json>
@@ -326,7 +361,6 @@ Example response:
 
   try {
     const { body } = await client.send(command);
-    console.log(body);
     const completions = JSON.parse(new TextDecoder().decode(body));
     return completions.content[0].text;
   } catch (error) {

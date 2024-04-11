@@ -4,10 +4,12 @@ import { WidgetCreator } from "../form/campaigns_with_date_form";
 
 import { parser } from "../../services/parser";
 import { loadedColumns } from "./../../constants/index.js";
+import { Commands } from "../commands/commands.jsx";
 
 export const Chart = () => {
   const [inputData, setInputData] = useState({});
-  const [widgets, setWidget] = useState([]);
+  const [widgets, setWidget] = useState({});
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setInputData(parser(loadedColumns));
@@ -15,17 +17,17 @@ export const Chart = () => {
 
   return (
     <>
-      <WidgetCreator setWidget={setWidget} />
+      <Commands
+        setWidget={setWidget}
+        setLoading={setLoading}
+        loading={loading}
+      />
+      <WidgetCreator
+        setWidget={setWidget}
+        loading={loading}
+        setLoading={setLoading}
+      />
       <Campaigns_with_date rootData={inputData} widget={widgets} />
     </>
   );
 };
-
-// create chart use "Creation Date" and "Daily Budget"
-// create line chart use "Campaign Name" and "Daily Budget"
-// create chart use "Campaign Name" and "Daily Budget" add title "My new title", make each column different colors
-// create pie chart use campaign date and daily budget
-// create chart use "Creation Date" and "Daily Budget" for one series and "Creation Date" and "Clicks" for second series
-// create chart use "Creation Date" and "Daily Budget" for one series and "Creation Date" and "Clicks" for second series  and "Creation Date" and "Imp" for third series
-// create two widgets use "Creation Date" and "Daily Budget" for one and "Creation Date" and "Clicks" for second
-// create three widgets use "Creation Date" and "Daily Budget" for one,"Creation Date" and "Clicks" for second, "Creation Date" and "Imp" for third
