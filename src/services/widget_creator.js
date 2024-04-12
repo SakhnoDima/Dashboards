@@ -2,7 +2,7 @@ import {
   BedrockRuntimeClient,
   InvokeModelCommand,
 } from "@aws-sdk/client-bedrock-runtime";
-import { loadedColumns, rootLayOut } from "../constants";
+import { loadedColumns, rootConnectors, rootLayOut } from "../constants";
 
 const client = new BedrockRuntimeClient({
   region: "us-east-1",
@@ -93,9 +93,6 @@ const widget_creator = async (message) => {
 
   The input will be provided in the following format:
 
-  To create an object you must use only these column values: ${Object.values(
-    loadedColumns
-  )}.
   You can use types like: line, spline, area, areaspline, column, bar, pie, scatter.
   Depending on the data the user provided add title, subtitle and description for accessibility.
   You should output a modified Highcharts chart JSON object based on the user's request.
@@ -216,9 +213,25 @@ Example input:
         ]
       }
     ]
-  }
+  },
+"connectors": {
+  "id": "main-data-grid-id",
+  "type": "JSON",
+  "options": {
+    "firstRowAsNames": false,
+    "columnNames": [
+      "Publisher",
+      "Campaign Name",
+      "Creation Date",
+      "Daily Budget",
+      "Imp",
+      "Clicks",
+    ],
+    "data": [],
+    "dataModifier": {},
+  },
+ }
 }
-
 
 </original-json>
 <user-request>Create chart use "Creation Date" and "Daily Budget" for one series and "Creation Date" and "Clicks" for second series </user-request>
@@ -331,15 +344,33 @@ Example response:
         ]
       }
     ]
-  }
+  },
+  "connectors": {
+  "id": "main-data-grid-id",
+  "type": "JSON",
+  "options": {
+    "firstRowAsNames": false,
+    "columnNames": [
+      "Publisher",
+      "Campaign Name",
+      "Creation Date",
+      "Daily Budget",
+      "Imp",
+      "Clicks",
+    ],
+    "data": [],
+    "dataModifier": {},
+  },
+ }
 }
 
 </instructions>
 
 <original-json>
 {
-  components:[ ${JSON.stringify(initConfig)}],
-  gui: ${JSON.stringify(rootLayOut)}
+  "components":[ ${JSON.stringify(initConfig)}],
+  "gui": ${JSON.stringify(rootLayOut)},
+  "connectors": ${JSON.stringify(rootConnectors)}
 }
 </original-json>
 <user-request>${message}</user-request>
