@@ -12,7 +12,7 @@ const App = () => {
       <Root_dashboard /> */}
       {/* <Parser /> */}
 
-      <TestWidget />
+        <Chart />
     </>
   );
 };

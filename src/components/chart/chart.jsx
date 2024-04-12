@@ -7,11 +7,13 @@ import { parser } from "../../services/parser";
 import { loadedColumns } from "./../../constants/index.js";
 import { Commands } from "../commands/commands.jsx";
 import Dashboards from "@highcharts/dashboards";
+import TestWidget from "../widgets/test_widget.jsx";
+import KpiWidget from  "../widgets/kpi_widget.jsx";
 
 export const Chart = () => {
   const [loading, setLoading] = useState(false);
   const [inputData, setInputData] = useState({});
-  const [widgets, setWidget] = useState({});
+  const [widgets, setWidget] = useState({components: [KpiWidget]});
 
   useEffect(() => {
     setInputData(parser(loadedColumns));
@@ -19,18 +21,18 @@ export const Chart = () => {
 
   return (
     <>
-      <Commands
-        setWidget={setWidget}
-        setLoading={setLoading}
-        loading={loading}
-      />
-      <WidgetCreator
-        setWidget={setWidget}
-        loading={loading}
-        setLoading={setLoading}
-      />
-      {/*<Campaigns_with_date rootData={inputData} widget={widgets} />*/}
-        <TestWidgetDashboard />
+      {/*<Commands*/}
+      {/*  setWidget={setWidget}*/}
+      {/*  setLoading={setLoading}*/}
+      {/*  loading={loading}*/}
+      {/*/>*/}
+      {/*<WidgetCreator*/}
+      {/*  setWidget={setWidget}*/}
+      {/*  loading={loading}*/}
+      {/*  setLoading={setLoading}*/}
+      {/*/>*/}
+      <Campaigns_with_date rootData={inputData} widget={widgets} />
+        {/*<TestWidget />*/}
     </>
   );
 };
