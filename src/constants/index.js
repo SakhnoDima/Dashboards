@@ -62,3 +62,12 @@ export const customCommands = [
   `Create two widgets use "Creation Date" and "Daily Budget" for one and "Creation Date" and "Clicks" for second`,
   `Create three widgets use "Creation Date" and "Daily Budget" for one,"Creation Date" and "Clicks" for second, "Creation Date" and "Imp" for third`,
 ];
+
+export const SHEET_ID = "1biCvz2yYY8P6e1Dfuw-ahYX7-rFpJtlXt2dVi76SLzY";
+export const SHEET_NAME = {
+  firstTable: "Groceries",
+  secondTable: "Coins",
+  thirdTable: "list_3",
+  fourthTable: "list_4",
+  fifthTable: "list_5",
+};

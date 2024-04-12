@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { Campaigns_with_date } from "../dashboards/campaigns_with_date";
 import { WidgetCreator } from "../form/campaigns_with_date_form";
 
-import { parser } from "../../services/parser";
-import { loadedColumns } from "./../../constants/index.js";
 import { Commands } from "../commands/commands.jsx";
+import { parser } from "../../services/index.js";
+import { loadedColumns } from "./../../constants/index.js";
 
 export const Chart = () => {
   const [loading, setLoading] = useState(false);
@@ -12,7 +12,7 @@ export const Chart = () => {
   const [widgets, setWidget] = useState({});
 
   useEffect(() => {
-    setInputData(parser(loadedColumns));
+    parser(loadedColumns).then((data) => setInputData(data));
   }, []);
 
   return (
