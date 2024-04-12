@@ -2,6 +2,7 @@ import { Chart } from "./components/chart/chart";
 
 import { Parser } from "./components/google_parser/parser";
 import { Root_dashboard } from "./components/root_dashboard/root_dashboard";
+import TestWidget from "./components/widgets/test_widget.jsx";
 
 const App = () => {
   return (
@@ -11,7 +12,7 @@ const App = () => {
       <Root_dashboard /> */}
       {/* <Parser /> */}
 
-      <Chart />
+      <TestWidget />
     </>
   );
 };
