@@ -14,7 +14,7 @@ export const rootLayOut = {
         {
           cells: [
             {
-              id: "main-data-grid",
+              id: "grid-widget",
             },
           ],
         },

@@ -9,11 +9,11 @@ const instaDataParser = async () => {
   return parser
     .parse()
     .then((data) => {
-      console.log(data);
-
+      const columns = new Set();
       const convertedData = data.map((obj) => {
         const newObj = {};
         for (const key in obj) {
+          columns.add(key); //додаємо назву колонки
           if (obj.hasOwnProperty(key)) {
             const value = obj[key];
             const match = unixTimeRegex.exec(value);
@@ -28,7 +28,8 @@ const instaDataParser = async () => {
         }
         return newObj;
       });
-      return convertedData;
+
+      return { convertedData, columns };
     })
     .catch((error) => console.log(error));
 };

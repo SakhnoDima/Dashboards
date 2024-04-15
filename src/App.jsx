@@ -13,10 +13,11 @@ const App = () => {
       <Root_dashboard /> */}
       {/* <Parser /> */}
 
-      {/* <Chart /> */}
-      <Insta_data />
+      <Chart />
+      {/* <Insta_data /> */}
     </>
   );
 };
 
 export { App };
+//create chart use "Начало" and "Охват"

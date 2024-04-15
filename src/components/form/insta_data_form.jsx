@@ -1,10 +1,11 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { StyledForm } from "./styles_forma";
-import { parser, widget_creator } from "../../services";
+import { insta_widget_creator } from "../../services";
 
-export const WidgetCreator = ({ setWidget, loading, setLoading }) => {
+export const WidgetCreator = ({ setOptions, columnsNames }) => {
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -12,9 +13,9 @@ export const WidgetCreator = ({ setWidget, loading, setLoading }) => {
     if (message.trim()) {
       try {
         setLoading(true);
-        // const res = await widget_creator(message);
+        const res = await insta_widget_creator(message, columnsNames);
         console.log(res);
-        setWidget(JSON.parse(res));
+        setOptions(JSON.parse(res));
       } catch (error) {
         console.log(error);
       } finally {
@@ -40,5 +41,5 @@ export const WidgetCreator = ({ setWidget, loading, setLoading }) => {
 };
 
 WidgetCreator.propTypes = {
-  setWidget: PropTypes.func.isRequired,
+  setOptions: PropTypes.func.isRequired,
 };
