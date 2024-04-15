@@ -15,45 +15,22 @@ Dashboards.PluginHandler.addPlugin(Dashboards.DataGridPlugin);
 export default function KpiWidget() {
     useEffect(() => {
         Dashboards.board('kpi_widget', {
-            components: [
-                {
-                    type: 'KPI',
-                    renderTo: 'kpi-vitamin-a',
-                    value: 900,
-                    valueFormat: '{value}',
-                    title: 'Vitamin A',
-                    subtitle: 'daily recommended dose',
-                },
-            ],
             gui: {
-                layouts: [
-                    {
-                        rows: [
-                            {
-                                cells: [
-                                    {
-                                        id: 'kpi_widget',
-                                        layout: {
-                                            rows: [
-                                                {
-                                                    cells: [
-                                                        {
-                                                            id: 'kpi-vitamin-a',
-                                                        },
-                                                        {
-                                                            id: 'kpi-iron',
-                                                        },
-                                                    ],
-                                                },
-                                            ],
-                                        },
-                                    },
-                                ],
-                            },
-                        ],
-                    },
-                ],
+                layouts: [{
+                    id: 'layout-1',
+                    rows: [{
+                        cells: [{
+                            id: 'dashboard-col-0'
+                        }]
+                    }]
+                }]
             },
+            components: [{
+                renderTo: 'dashboard-col-0',
+                type: 'KPI',
+                title: 'My KPI',
+                value: 10
+            }]
         });
     }, []);
 
