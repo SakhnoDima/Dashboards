@@ -3,7 +3,7 @@ import { Campaigns_with_date } from "../dashboards/campaigns_with_date";
 import { WidgetCreator } from "../form/campaigns_with_date_form";
 
 import { Commands } from "../commands/commands.jsx";
-import { parser } from "../../services/index.js";
+import { instaDataParser, parser } from "../../services/index.js";
 import { loadedColumns } from "./../../constants/index.js";
 
 export const Chart = () => {
@@ -12,7 +12,7 @@ export const Chart = () => {
   const [widgets, setWidget] = useState({});
 
   useEffect(() => {
-    parser(loadedColumns).then((data) => setInputData(data));
+    instaDataParser().then((data) => setInputData(data));
   }, []);
 
   return (

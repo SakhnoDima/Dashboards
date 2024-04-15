@@ -19,10 +19,8 @@ const instaDataParser = async () => {
             const match = unixTimeRegex.exec(value);
             if (match) {
               const [, year, month, day] = match;
-              const dateObj = new Date(year, month - 1, day);
+              const dateObj = new Date(+year, +month, +day + 1);
               newObj[key] = dateObj.getTime();
-            } else if (!value) {
-              console.log(key);
             } else {
               newObj[key] = value;
             }
@@ -30,7 +28,6 @@ const instaDataParser = async () => {
         }
         return newObj;
       });
-
       return convertedData;
     })
     .catch((error) => console.log(error));

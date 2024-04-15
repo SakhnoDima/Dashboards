@@ -72,6 +72,11 @@ const config = {
         columns: {
           Начало: {
             cellFormatter: function () {
+              //!не впевненій що потрібно
+              // if (!this.value) {
+              //   console.log(new Date().toISOString().substring(0, 10));
+              //   return new Date().toISOString().substring(0, 10);
+              // }
               return new Date(this.value).toISOString().substring(0, 10);
             },
           },
@@ -88,77 +93,77 @@ const config = {
         },
       },
     },
-    {
-      renderTo: "widget_1",
-      type: "Highcharts",
-      connector: {
-        id: "dashboard-parser-id",
-        columnAssignment: [
-          {
-            seriesId: "id",
-            data: ["Название группы объявлений", "Охват"],
-          },
-        ],
-      },
-      sync: {
-        highlight: true,
-      },
-      chartOptions: {
-        chart: {
-          animation: false,
-          type: "column",
-        },
-        title: {
-          text: "",
-        },
-        subtitle: {
-          text: "",
-        },
-        series: [
-          {
-            id: "id",
-            name: "",
-          },
-        ],
-        tooltip: {
-          shared: true,
-          split: true,
-          stickOnContact: true,
-        },
-        lang: {
-          accessibility: {
-            chartContainerLabel: "",
-          },
-        },
-        accessibility: {
-          description: "",
-        },
-        xAxis: {
-          type: "category", //category..datetime
-          accessibility: {
-            description: "",
-          },
-        },
-        yAxis: [
-          {
-            title: {
-              text: "",
-            },
-          },
-        ],
-        plotOptions: {
-          series: {
-            animation: {
-              duration: 2000,
-            },
-            marker: {
-              enabled: false,
-            },
-            lineWidth: 2,
-          },
-        },
-      },
-    },
+    // {
+    //   renderTo: "widget_1",
+    //   type: "Highcharts",
+    //   connector: {
+    //     id: "dashboard-parser-id",
+    //     columnAssignment: [
+    //       {
+    //         seriesId: "id",
+    //         data: ["Начало", "Охват"],
+    //       },
+    //     ],
+    //   },
+    //   sync: {
+    //     highlight: true,
+    //   },
+    //   chartOptions: {
+    //     chart: {
+    //       animation: false,
+    //       type: "column",
+    //     },
+    //     title: {
+    //       text: "",
+    //     },
+    //     subtitle: {
+    //       text: "",
+    //     },
+    //     series: [
+    //       {
+    //         id: "id",
+    //         name: "",
+    //       },
+    //     ],
+    //     tooltip: {
+    //       shared: true,
+    //       split: true,
+    //       stickOnContact: true,
+    //     },
+    //     lang: {
+    //       accessibility: {
+    //         chartContainerLabel: "",
+    //       },
+    //     },
+    //     accessibility: {
+    //       description: "",
+    //     },
+    //     xAxis: {
+    //       type: "datetime", //category..datetime
+    //       accessibility: {
+    //         description: "",
+    //       },
+    //     },
+    //     yAxis: [
+    //       {
+    //         title: {
+    //           text: "",
+    //         },
+    //       },
+    //     ],
+    //     plotOptions: {
+    //       series: {
+    //         animation: {
+    //           duration: 2000,
+    //         },
+    //         marker: {
+    //           enabled: false,
+    //         },
+    //         lineWidth: 2,
+    //       },
+    //     },
+    //   },
+    // },
   ],
 };
 
