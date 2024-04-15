@@ -24,22 +24,6 @@ const config = {
           dataModifier: {},
         },
       },
-      {
-        id: "google-sheet-connector-id",
-        type: "GoogleSheets",
-        enablePolling: true,
-        dataRefreshRate: 10,
-        options: {
-          googleAPIKey: "AIzaSyAsJcqoPw4wiuB0jd-uB_H4VuEyakP7pOw",
-          googleSpreadsheetKey: "1biCvz2yYY8P6e1Dfuw-ahYX7-rFpJtlXt2dVi76SLzY",
-          // googleSpreadsheetRange: "A1:H7",
-          worksheet: 2,
-          // startRow: 0, // Adjust if your data doesn't start from the first row
-          // endRow: null, // Adjust if you want to limit the number of rows read
-          // startColumn: 0, // Adjust if your data doesn't start from the first column
-          // endColumn: null, // Adjust if you want to limit the number of columns read
-        },
-      },
     ],
   },
   gui: {
@@ -73,9 +57,9 @@ const config = {
   },
   components: [
     {
-      cell: "google-sheet-connector",
+      cell: "dashboard-parser",
       connector: {
-        id: "google-sheet-connector-id",
+        id: "dashboard-parser-id",
       },
       type: "DataGrid",
       editable: true,
@@ -91,30 +75,28 @@ const config = {
               return new Date(this.value).toISOString().substring(0, 10);
             },
           },
+          "Дата начала отчетности": {
+            cellFormatter: function () {
+              return new Date(this.value).toISOString().substring(0, 10);
+            },
+          },
+          "Дата окончания отчетности": {
+            cellFormatter: function () {
+              return new Date(this.value).toISOString().substring(0, 10);
+            },
+          },
         },
-      },
-    },
-    {
-      cell: "dashboard-parser",
-      connector: {
-        id: "dashboard-parser-id",
-      },
-      type: "DataGrid",
-      editable: true,
-      sync: {
-        highlight: true,
-        visibility: true,
       },
     },
     {
       renderTo: "widget_1",
       type: "Highcharts",
       connector: {
-        id: "google-sheet-connector-id",
+        id: "dashboard-parser-id",
         columnAssignment: [
           {
             seriesId: "id",
-            data: ["Результат", "Цена за результат"],
+            data: ["Название группы объявлений", "Охват"],
           },
         ],
       },
@@ -152,7 +134,7 @@ const config = {
           description: "",
         },
         xAxis: {
-          type: "datetime", //category..datetime
+          type: "category", //category..datetime
           accessibility: {
             description: "",
           },

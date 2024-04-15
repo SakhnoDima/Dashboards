@@ -1,5 +1,6 @@
 import PublicGoogleSheetsParser from "public-google-sheets-parser";
 import { SHEET_ID, SHEET_NAME } from "../components/google_parser/parser";
+import { unixTimeRegex } from "../constants";
 
 const options = { sheetName: SHEET_NAME.fifthTable, useFormat: false };
 
@@ -9,7 +10,28 @@ const instaDataParser = async () => {
     .parse()
     .then((data) => {
       console.log(data);
-      return data;
+
+      const convertedData = data.map((obj) => {
+        const newObj = {};
+        for (const key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            const value = obj[key];
+            const match = unixTimeRegex.exec(value);
+            if (match) {
+              const [, year, month, day] = match;
+              const dateObj = new Date(year, month - 1, day);
+              newObj[key] = dateObj.getTime();
+            } else if (!value) {
+              console.log(key);
+            } else {
+              newObj[key] = value;
+            }
+          }
+        }
+        return newObj;
+      });
+
+      return convertedData;
     })
     .catch((error) => console.log(error));
 };
