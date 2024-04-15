@@ -41,7 +41,7 @@ const initConfig = {
     series: [
       {
         id: "daily-price",
-        name: "Daily Budget",
+        name: "",
         dataSorting: {
           enabled: false,
         },

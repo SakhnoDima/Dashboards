@@ -22,7 +22,6 @@ const dashComponent = {
     id: "main-data-grid-id",
   },
   type: "DataGrid",
-
   sync: {
     highlight: true,
   },
