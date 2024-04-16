@@ -101,7 +101,6 @@ const widget_creator = async (message) => {
   
   Some examples of user requests could be:
 
-
 - "Change the chart type to line chart"
 - "Update the y-axis title to 'Values'"
 - "Change the chart title to 'My Chart'"
@@ -213,17 +212,7 @@ Example input:
         ]
       }
     ]
-  },
-"connectors": {
-  "id": "main-data-grid-id",
-  "type": "JSON",
-  "options": {
-    "firstRowAsNames": false,
-    "columnNames": [],
-    "data": [],
-    "dataModifier": {},
-  },
- }
+  }
 }
 
 </original-json>
@@ -337,35 +326,16 @@ Example response:
         ]
       }
     ]
-  },
-  "connectors": {
-  "id": "main-data-grid-id",
-  "type": "JSON",
-  "options": {
-    "firstRowAsNames": false,
-    "columnNames": [ ],
-    "data": [],
-    "dataModifier": {},
-  },
- }
+  }
 }
 
 </instructions>
 
 <original-json>
-{
+ {
   "components":[ ${JSON.stringify(initConfig)}],
   "gui": ${JSON.stringify(rootLayOutCampaigns)},
-  "connectors": {
- "id": "main-data-grid-id",
-  "type": "JSON",
-  "options": {
-    "firstRowAsNames": false,
-    "columnNames": [],
-    "data": [],
-    "dataModifier": {},
-  },
-}}
+ }
 }
 </original-json>
 <user-request>${message}</user-request>
@@ -405,3 +375,25 @@ Example response:
 };
 
 export { widget_creator };
+
+// [
+//   "Название группы объявлений",
+//   "Название объявления",
+//   "Статус показа",
+//   "Уровень показа",
+//   "Охват",
+//   "Показы",
+//   "Частота",
+//   "Тип результата",
+//   "Результат",
+//   "Цена за результат",
+//   "Сумма затрат (USD)",
+//   "Начало",
+//   "Конец",
+//   "CPM (цена за 1 000 показов)",
+//   "Клики по ссылке",
+//   "CPC (цена за клик по ссылке)",
+//   "CTR (кликабельность)",
+//   "Дата начала отчетности",
+//   "Дата окончания отчетности",
+// ];

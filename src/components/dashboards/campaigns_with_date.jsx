@@ -33,6 +33,22 @@ const dashComponent = {
           return new Date(this.value).toISOString().substring(0, 10);
         },
       },
+      Начало: {
+        cellFormatter: function () {
+          return new Date(this.value).toISOString().substring(0, 10);
+        },
+      },
+      "Дата окончания отчетности": {
+        cellFormatter: function () {
+          return new Date(this.value).toISOString().substring(0, 10);
+        },
+      },
+
+      "Дата начала отчетности": {
+        cellFormatter: function () {
+          return new Date(this.value).toISOString().substring(0, 10);
+        },
+      },
     },
   },
 };
@@ -47,12 +63,6 @@ export const Campaigns_with_date = ({ rootData, widget }) => {
     ];
   }, [widget]);
 
-  const newConnectors = useMemo(() => {
-    return Object.keys(widget).length !== 0
-      ? widget.connectors
-      : rootConnectors;
-  }, [widget]);
-
   useEffect(() => {
     if (components !== newComponents) {
       setComponents(newComponents);
@@ -60,9 +70,21 @@ export const Campaigns_with_date = ({ rootData, widget }) => {
   }, [newComponents]);
 
   useEffect(() => {
-    newConnectors.options.data = rootData.convertedData;
     Dashboards.board("container", {
-      dataPool: { connectors: [newConnectors] },
+      dataPool: {
+        connectors: [
+          {
+            id: "main-data-grid-id",
+            type: "JSON",
+            options: {
+              firstRowAsNames: false,
+              columnNames: [],
+              data: rootData.convertedData,
+              dataModifier: {},
+            },
+          },
+        ],
+      },
       editMode: {
         enabled: true,
         contextMenu: {

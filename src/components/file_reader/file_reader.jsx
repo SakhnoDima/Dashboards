@@ -38,6 +38,7 @@ const File_reader = ({ loading, setFileData }) => {
           Object.values(row).some((value) => value !== "")
         );
       });
+
       setFileData(filteredData);
     };
 
