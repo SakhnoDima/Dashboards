@@ -12,7 +12,8 @@ export const Chart = () => {
   const [widgets, setWidget] = useState({});
 
   useEffect(() => {
-    instaDataParser().then((data) => setInputData(data));
+    parser(loadedColumns).then((data) => setInputData(data));
+    //instaDataParser().then((data) => setInputData(data));
   }, []);
 
   return (

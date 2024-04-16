@@ -92,7 +92,6 @@ const components = [
 // };
 
 export const InstaDataDashboard = ({ data, options }) => {
-  console.log(options.components);
   useEffect(() => {
     // config.dataPool.connectors[0].options.data = data;
     Dashboards.board("container", {

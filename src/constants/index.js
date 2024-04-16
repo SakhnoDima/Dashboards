@@ -33,6 +33,32 @@ export const rootLayOut = {
   ],
 };
 
+export const rootLayOutCampaigns = {
+  layouts: [
+    {
+      rows: [
+        {
+          cells: [
+            {
+              id: "main-data-grid",
+            },
+          ],
+        },
+        {
+          cells: [
+            {
+              id: "first-widget",
+            },
+            {
+              id: "second-widget",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
 export const rootConnectors = {
   id: "main-data-grid-id",
   type: "JSON",
