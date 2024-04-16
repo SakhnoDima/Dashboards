@@ -11,11 +11,15 @@ const instaDataParser = async (tableId, sheetName) => {
     (options.sheetName = sheetName)
   );
   return parser.parse().then((data) => {
-    const columns = new Set();
+    const columns = {
+      numberColumns: new Set(),
+      dateColumns: new Set(),
+      stringColumns: new Set(),
+    };
+
     const convertedData = data.map((obj) => {
       const newObj = {};
       for (const key in obj) {
-        columns.add(key); //додаємо назву колонки
         if (obj.hasOwnProperty(key)) {
           const value = obj[key];
           const match = unixTimeRegex.exec(value);
@@ -24,6 +28,7 @@ const instaDataParser = async (tableId, sheetName) => {
             const [, year, month, day] = match;
             const dateObj = new Date(+year, +month, +day + 1);
             newObj[key] = dateObj.getTime();
+            columns.dateColumns.add(key);
             //перевірка на число
           } else if (typeof obj[key] === "string" && regex.test(obj[key])) {
             const numberStr = obj[key]
@@ -32,13 +37,18 @@ const instaDataParser = async (tableId, sheetName) => {
               .replace(",", ".");
             const number = parseFloat(numberStr);
             newObj[key] = number;
+            columns.numberColumns.add(key);
           } else {
             newObj[key] = value;
+            typeof obj[key] === "string"
+              ? columns.stringColumns.add(key)
+              : columns.numberColumns.add(key);
           }
         }
       }
       return newObj;
     });
+
     return { convertedData, columns };
   });
 };
