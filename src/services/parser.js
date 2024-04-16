@@ -3,7 +3,7 @@ import { SHEET_ID, SHEET_NAME } from "../components/google_parser/parser";
 
 const options = { sheetName: SHEET_NAME.secondTable, useFormat: true };
 
-export const parser = (columns) => {
+const parser = (columns) => {
   const parser = new PublicGoogleSheetsParser(SHEET_ID, options);
   return parser
     .parse()
@@ -19,3 +19,5 @@ export const parser = (columns) => {
     })
     .catch((error) => console.log(error));
 };
+
+export { parser };

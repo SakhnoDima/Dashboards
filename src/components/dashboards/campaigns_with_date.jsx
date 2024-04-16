@@ -4,9 +4,11 @@ import Highcharts from "highcharts";
 import Dashboards from "@highcharts/dashboards";
 import DataGrid from "@highcharts/dashboards/datagrid";
 import LayoutModule from "@highcharts/dashboards/modules/layout";
-import { rootLayOut } from "../../constants";
+import MathModifier from "@highcharts/dashboards/modules/math-modifier";
+import { rootConnectors, rootLayOut } from "../../constants";
 
 LayoutModule(Dashboards);
+MathModifier(Dashboards);
 
 Dashboards.HighchartsPlugin.custom.connectHighcharts(Highcharts);
 Dashboards.DataGridPlugin.custom.connectDataGrid(DataGrid);
@@ -20,7 +22,6 @@ const dashComponent = {
     id: "main-data-grid-id",
   },
   type: "DataGrid",
-
   sync: {
     highlight: true,
   },
@@ -35,27 +36,6 @@ const dashComponent = {
     },
   },
 };
-const dataPool = {
-  connectors: [
-    {
-      id: "main-data-grid-id",
-      type: "JSON",
-      options: {
-        firstRowAsNames: false,
-        columnNames: [
-          "Publisher",
-          "Campaign Name",
-          "Creation Date",
-          "Daily Budget",
-          "Imp",
-          "Clicks",
-        ],
-        data: [],
-        dataModifier: {},
-      },
-    },
-  ],
-};
 
 export const Campaigns_with_date = ({ rootData, widget }) => {
   const [components, setComponents] = useState([]);
@@ -65,7 +45,13 @@ export const Campaigns_with_date = ({ rootData, widget }) => {
       dashComponent,
       ...(Object.keys(widget).length !== 0 ? widget.components : []),
     ];
-  }, [rootData, widget]);
+  }, [widget]);
+
+  const newConnectors = useMemo(() => {
+    return Object.keys(widget).length !== 0
+      ? widget.connectors
+      : rootConnectors;
+  }, [widget]);
 
   useEffect(() => {
     if (components !== newComponents) {
@@ -74,9 +60,10 @@ export const Campaigns_with_date = ({ rootData, widget }) => {
   }, [newComponents]);
 
   useEffect(() => {
-    dataPool.connectors[0].options.data = rootData;
+    newConnectors.options.data = rootData;
+
     Dashboards.board("container", {
-      dataPool,
+      dataPool: { connectors: [newConnectors] },
       editMode: {
         enabled: true,
         contextMenu: {
