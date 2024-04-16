@@ -2,7 +2,7 @@ import {
   BedrockRuntimeClient,
   InvokeModelCommand,
 } from "@aws-sdk/client-bedrock-runtime";
-import { rootConnectors, rootLayOutCampaigns } from "../constants";
+import { rootConnectors, rootLayOut } from "../constants";
 
 const client = new BedrockRuntimeClient({
   region: "us-east-1",
@@ -16,7 +16,7 @@ const initConfig = {
   renderTo: "first-widget",
   type: "Highcharts",
   connector: {
-    id: "main-data-grid-id",
+    id: "connectors-id",
     columnAssignment: [
       {
         seriesId: "daily-price",
@@ -88,15 +88,15 @@ const initConfig = {
   },
 };
 
-const widget_creator = async (message) => {
+const insta_widget_creator = async (message, columnsNames) => {
   const prompt = `You are a Highcharts chart JSON transformer. Your task is to take a Highcharts chart JSON and modify it based on a user request. 
 
   The input will be provided in the following format:
 
+  Нou can only use column names like: ${columnsNames} If the user made a request and you don’t understand which columns to use, return an empty object
   You can use types like: line, spline, area, areaspline, column, bar, pie, scatter.
   Depending on the data the user provided add title, subtitle and description for accessibility.
   You should output a modified Highcharts chart JSON object based on the user's request.
-  To manipulate the sorting order, set the option dataSorting.enabled.true in series for descending and for ascending also add xAxis.reversed.true options.
   If the request is not clear or cannot be fulfilled, you should return the original chart JSON with an error message.
   
   Some examples of user requests could be:
@@ -120,7 +120,7 @@ Example input:
       "renderTo": "first-widget",
       "type": "Highcharts",
       "connector": {
-        "id": "main-data-grid-id",
+        "id": "connectors-id",
         "columnAssignment": [
           {
             "seriesId": "chartId",
@@ -213,21 +213,11 @@ Example input:
         ]
       }
     ]
-  },
-"connectors": {
-  "id": "main-data-grid-id",
-  "type": "JSON",
-  "options": {
-    "firstRowAsNames": false,
-    "columnNames": [],
-    "data": [],
-    "dataModifier": {},
-  },
- }
+  }
 }
 
 </original-json>
-<user-request>Create chart use "Creation Date" and "Daily Budget" for one series and "Creation Date" and "Clicks" for second series </user-request>
+<user-request>Create chart use "Creation Date" and "Daily Budget" columns for series </user-request>
 
 Example response:
 {
@@ -236,17 +226,12 @@ Example response:
       "renderTo": "first-widget",
       "type": "Highcharts",
       "connector": {
-        "id": "main-data-grid-id",
+        "id": "connectors-id",
         "columnAssignment": [
           {
             "seriesId": "daily-budget",
             "data": ["Creation Date", "Daily Budget"]
           },
-          {
-            "seriesId": "clicks",
-            "data": ["Creation Date", "Clicks"],
-           
-          }
         ]
       },
       "sync": {
@@ -258,16 +243,15 @@ Example response:
           "type": "line"
         },
         "title": {
-          "text": "Daily Budget and Clicks"
+          "text": "Daily Budget"
         },
         "subtitle": {
-          "text": "Daily budget and clicks by creation date"
+          "text": "Daily budget by creation date"
         },
         "series": [
           {
             "id": "daily-budget",
             "name": "Daily Budget",
-            "yAxis": 1
           }
         ],
         "tooltip": {
@@ -323,13 +307,6 @@ Example response:
           {
             "cells": [
               {
-                "id": "main-data-grid"
-              }
-            ]
-          },
-          {
-            "cells": [
-              {
                 "id": "first-widget"
               }
             ]
@@ -338,16 +315,6 @@ Example response:
       }
     ]
   },
-  "connectors": {
-  "id": "main-data-grid-id",
-  "type": "JSON",
-  "options": {
-    "firstRowAsNames": false,
-    "columnNames": [ ],
-    "data": [],
-    "dataModifier": {},
-  },
- }
 }
 
 </instructions>
@@ -355,19 +322,8 @@ Example response:
 <original-json>
 {
   "components":[ ${JSON.stringify(initConfig)}],
-  "gui": ${JSON.stringify(rootLayOutCampaigns)},
-  "connectors": {
- "id": "main-data-grid-id",
-  "type": "JSON",
-  "options": {
-    "firstRowAsNames": false,
-    "columnNames": [],
-    "data": [],
-    "dataModifier": {},
-  },
-}}
-}
-</original-json>
+  "gui": ${JSON.stringify(rootLayOut)},
+ </original-json>
 <user-request>${message}</user-request>
 
   `;
@@ -404,4 +360,4 @@ Example response:
   }
 };
 
-export { widget_creator };
+export { insta_widget_creator };

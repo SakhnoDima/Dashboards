@@ -14,6 +14,32 @@ export const rootLayOut = {
         {
           cells: [
             {
+              id: "grid-widget",
+            },
+          ],
+        },
+        {
+          cells: [
+            {
+              id: "first-widget",
+            },
+            {
+              id: "second-widget",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+export const rootLayOutCampaigns = {
+  layouts: [
+    {
+      rows: [
+        {
+          cells: [
+            {
               id: "main-data-grid",
             },
           ],
@@ -38,14 +64,7 @@ export const rootConnectors = {
   type: "JSON",
   options: {
     firstRowAsNames: false,
-    columnNames: [
-      "Publisher",
-      "Campaign Name",
-      "Creation Date",
-      "Daily Budget",
-      "Imp",
-      "Clicks",
-    ],
+    columnNames: [],
     data: [],
     dataModifier: {},
   },
@@ -71,5 +90,3 @@ export const SHEET_NAME = {
   fourthTable: "list_4",
   fifthTable: "list_5",
 };
-
-export const unixTimeRegex = /Date\((\d+),(\d+),(\d+)\)/;

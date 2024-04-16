@@ -5,7 +5,7 @@ import Dashboards from "@highcharts/dashboards";
 import DataGrid from "@highcharts/dashboards/datagrid";
 import LayoutModule from "@highcharts/dashboards/modules/layout";
 import MathModifier from "@highcharts/dashboards/modules/math-modifier";
-import { rootConnectors, rootLayOut } from "../../constants";
+import { rootConnectors, rootLayOutCampaigns } from "../../constants";
 
 LayoutModule(Dashboards);
 MathModifier(Dashboards);
@@ -39,7 +39,7 @@ const dashComponent = {
 
 export const Campaigns_with_date = ({ rootData, widget }) => {
   const [components, setComponents] = useState([]);
-
+  console.log(rootData);
   const newComponents = useMemo(() => {
     return [
       dashComponent,
@@ -60,8 +60,7 @@ export const Campaigns_with_date = ({ rootData, widget }) => {
   }, [newComponents]);
 
   useEffect(() => {
-    newConnectors.options.data = rootData;
-
+    newConnectors.options.data = rootData.convertedData;
     Dashboards.board("container", {
       dataPool: { connectors: [newConnectors] },
       editMode: {
@@ -71,7 +70,7 @@ export const Campaigns_with_date = ({ rootData, widget }) => {
           items: ["editMode"],
         },
       },
-      gui: Object.keys(widget).length ? widget.gui : rootLayOut,
+      gui: Object.keys(widget).length ? widget.gui : rootLayOutCampaigns,
       components: newComponents,
     });
   }, [rootData, widget, newComponents]);
