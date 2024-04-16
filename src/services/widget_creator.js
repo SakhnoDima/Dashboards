@@ -101,7 +101,7 @@ const widget_creator = async (message) => {
   
   Some examples of user requests could be:
 
-- "Create chart use "Creation Date" and 'Daily Budget'"
+
 - "Change the chart type to line chart"
 - "Update the y-axis title to 'Values'"
 - "Change the chart title to 'My Chart'"

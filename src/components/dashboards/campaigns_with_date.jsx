@@ -39,7 +39,7 @@ const dashComponent = {
 
 export const Campaigns_with_date = ({ rootData, widget }) => {
   const [components, setComponents] = useState([]);
-
+  console.log(rootData);
   const newComponents = useMemo(() => {
     return [
       dashComponent,

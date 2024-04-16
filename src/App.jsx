@@ -13,10 +13,9 @@ const App = () => {
       {/* 
       <Root_dashboard /> */}
       {/* <Parser /> */}
+      {/* <Insta_data /> */}
 
       <Chart />
-
-      {/* <Insta_data /> */}
     </>
   );
 };

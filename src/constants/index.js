@@ -90,5 +90,3 @@ export const SHEET_NAME = {
   fourthTable: "list_4",
   fifthTable: "list_5",
 };
-
-export const unixTimeRegex = /Date\((\d+),(\d+),(\d+)\)/;

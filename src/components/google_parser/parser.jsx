@@ -7,7 +7,7 @@ import { Forma } from "../form/new_form";
 export const SHEET_ID = "1biCvz2yYY8P6e1Dfuw-ahYX7-rFpJtlXt2dVi76SLzY";
 export const SHEET_NAME = {
   firstTable: "Groceries",
-  secondTable: "Coins",
+  advertising: "advertising_companies",
   thirdTable: "list_3",
   fourthTable: "list_4",
   fifthTable: "list_5",

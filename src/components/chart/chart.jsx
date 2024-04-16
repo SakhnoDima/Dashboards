@@ -12,7 +12,7 @@ export const Chart = () => {
   const [inputData, setInputData] = useState({});
   const [widgets, setWidget] = useState({});
   const [fileData, setFileData] = useState([]);
-  console.log(fileData);
+
   useEffect(() => {
     //parser(loadedColumns).then((data) => setInputData(data));
     instaDataParser().then((data) => setInputData(data));
