@@ -13,7 +13,6 @@ export const WidgetCreator = ({ setWidget, loading, setLoading }) => {
       try {
         setLoading(true);
         const res = await widget_creator(message);
-        console.log(res);
         setWidget(JSON.parse(res));
       } catch (error) {
         console.log(error);

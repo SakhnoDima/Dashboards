@@ -10,7 +10,7 @@ export const SHEET_NAME = {
   advertising: "advertising_companies",
   thirdTable: "list_3",
   fourthTable: "list_4",
-  fifthTable: "list_5",
+  insta_data: "insta_data",
   sixthTable: "list_6",
 };
 
