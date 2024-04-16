@@ -2,7 +2,7 @@ import {
   BedrockRuntimeClient,
   InvokeModelCommand,
 } from "@aws-sdk/client-bedrock-runtime";
-import { loadedColumns, rootConnectors, rootLayOut } from "../constants";
+import { rootConnectors, rootLayOutCampaigns } from "../constants";
 
 const client = new BedrockRuntimeClient({
   region: "us-east-1",
@@ -219,14 +219,7 @@ Example input:
   "type": "JSON",
   "options": {
     "firstRowAsNames": false,
-    "columnNames": [
-      "Publisher",
-      "Campaign Name",
-      "Creation Date",
-      "Daily Budget",
-      "Imp",
-      "Clicks",
-    ],
+    "columnNames": [],
     "data": [],
     "dataModifier": {},
   },
@@ -350,14 +343,7 @@ Example response:
   "type": "JSON",
   "options": {
     "firstRowAsNames": false,
-    "columnNames": [
-      "Publisher",
-      "Campaign Name",
-      "Creation Date",
-      "Daily Budget",
-      "Imp",
-      "Clicks",
-    ],
+    "columnNames": [ ],
     "data": [],
     "dataModifier": {},
   },
@@ -369,8 +355,17 @@ Example response:
 <original-json>
 {
   "components":[ ${JSON.stringify(initConfig)}],
-  "gui": ${JSON.stringify(rootLayOut)},
-  "connectors": ${JSON.stringify(rootConnectors)}
+  "gui": ${JSON.stringify(rootLayOutCampaigns)},
+  "connectors": {
+ "id": "main-data-grid-id",
+  "type": "JSON",
+  "options": {
+    "firstRowAsNames": false,
+    "columnNames": [],
+    "data": [],
+    "dataModifier": {},
+  },
+}}
 }
 </original-json>
 <user-request>${message}</user-request>

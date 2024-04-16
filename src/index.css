@@ -1,6 +1,6 @@
-/*@import url('https://code.highcharts.com/css/highcharts.css');*/
-@import url('https://code.highcharts.com/dashboards/css/datagrid.css');
-@import url('https://code.highcharts.com/dashboards/css/dashboards.css');
+@import url("https://code.highcharts.com/css/highcharts.css");
+@import url("https://code.highcharts.com/dashboards/css/datagrid.css");
+@import url("https://code.highcharts.com/dashboards/css/dashboards.css");
 
 h1#title {
   padding-top: 10px;
@@ -19,7 +19,7 @@ h1#title {
   padding: 0;
   margin-right: 4px;
   background-color: var(--highcharts-color-0);
-  content: ' ';
+  content: " ";
 }
 
 #kpi-iron .highcharts-dashboards-component-title::before {
@@ -52,7 +52,7 @@ h1#title {
 
 #kpi-vitamin-a .highcharts-dashboards-component-kpi-value::after,
 #kpi-iron .highcharts-dashboards-component-kpi-value::after {
-  content: 'micrograms';
+  content: "micrograms";
   display: block;
   font-size: 1rem;
 }
@@ -130,8 +130,6 @@ h1#title {
     flex: 1 1 50%;
   }
 }
-
-
 
 button {
   outline: none;

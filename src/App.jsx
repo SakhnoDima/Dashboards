@@ -16,7 +16,7 @@ const App = () => {
 
       <Chart />
 
-      <Insta_data />
+      {/* <Insta_data /> */}
     </>
   );
 };

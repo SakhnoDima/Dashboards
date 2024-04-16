@@ -64,14 +64,7 @@ export const rootConnectors = {
   type: "JSON",
   options: {
     firstRowAsNames: false,
-    columnNames: [
-      "Publisher",
-      "Campaign Name",
-      "Creation Date",
-      "Daily Budget",
-      "Imp",
-      "Clicks",
-    ],
+    columnNames: [],
     data: [],
     dataModifier: {},
   },

@@ -2,7 +2,7 @@ import PublicGoogleSheetsParser from "public-google-sheets-parser";
 import { SHEET_ID, SHEET_NAME } from "../components/google_parser/parser";
 import { unixTimeRegex } from "../constants";
 
-const options = { sheetName: SHEET_NAME.fifthTable, useFormat: false };
+const options = { sheetName: SHEET_NAME.secondTable, useFormat: false };
 
 const instaDataParser = async () => {
   const parser = new PublicGoogleSheetsParser(SHEET_ID, options);
@@ -26,6 +26,7 @@ const instaDataParser = async () => {
             }
           }
         }
+
         return newObj;
       });
 

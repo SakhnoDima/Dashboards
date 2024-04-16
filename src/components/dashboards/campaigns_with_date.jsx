@@ -60,8 +60,7 @@ export const Campaigns_with_date = ({ rootData, widget }) => {
   }, [newComponents]);
 
   useEffect(() => {
-    console.log(newComponents);
-    newConnectors.options.data = rootData;
+    newConnectors.options.data = rootData.convertedData;
     Dashboards.board("container", {
       dataPool: { connectors: [newConnectors] },
       editMode: {

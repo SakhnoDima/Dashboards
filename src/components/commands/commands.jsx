@@ -8,13 +8,13 @@ export const Commands = ({ setWidget, setLoading, loading }) => {
     try {
       setLoading(true);
       const res = await widget_creator(command);
+      console.log(res);
       setWidget(JSON.parse(res));
     } catch (error) {
       console.log(error);
     } finally {
       setLoading(false);
     }
-    console.log(command);
   };
   return (
     <Box>
