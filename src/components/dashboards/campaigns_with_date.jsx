@@ -5,7 +5,7 @@ import Dashboards from "@highcharts/dashboards";
 import DataGrid from "@highcharts/dashboards/datagrid";
 import LayoutModule from "@highcharts/dashboards/modules/layout";
 import MathModifier from "@highcharts/dashboards/modules/math-modifier";
-import { rootConnectors, rootLayOutCampaigns } from "../../constants";
+import { rootLayOutCampaigns } from "../../constants";
 
 LayoutModule(Dashboards);
 MathModifier(Dashboards);
@@ -16,7 +16,7 @@ Dashboards.DataGridPlugin.custom.connectDataGrid(DataGrid);
 Dashboards.PluginHandler.addPlugin(Dashboards.HighchartsPlugin);
 Dashboards.PluginHandler.addPlugin(Dashboards.DataGridPlugin);
 
-export const Campaigns_with_date = ({ rootData, widget }) => {
+export const Campaigns_with_date = ({ rootData, widget, grid }) => {
   useEffect(() => {
     Dashboards.board("container", {
       dataPool: {
@@ -40,10 +40,10 @@ export const Campaigns_with_date = ({ rootData, widget }) => {
           items: ["editMode"],
         },
       },
-      gui: widget.gui,
-      components: widget.components,
+      gui: widget.gui ? widget.gui : rootLayOutCampaigns,
+      components: widget.components ? [...widget.components, grid] : [grid],
     });
-  }, [rootData, widget]);
+  }, [rootData, widget, grid]);
 
   return <div id="container" />;
 };

@@ -4,7 +4,6 @@ import { widget_creator } from "../../services";
 import { Box, Button } from "./commands_styled";
 
 export const Commands = ({ setWidget, setLoading, loading, rootData }) => {
-  console.log(rootData);
   const [commands, setCommands] = useState([]);
 
   useEffect(() => {
