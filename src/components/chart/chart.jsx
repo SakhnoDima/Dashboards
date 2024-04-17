@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Campaigns_with_date } from "../dashboards/campaigns_with_date";
 import { WidgetCreator } from "../form/campaigns_with_date_form";
 
 import { Commands } from "../commands/commands.jsx";
 
-import { instaDataParser, parser } from "../../services/index.js";
 import File_reader from "../file_reader/file_reader.jsx";
 import Data_reader from "../data_reader/data_reader.jsx";
-import Data_grid from "../dashboards/data_fgrid.jsx";
+import Data_grid from "../dashboards/data_grid.jsx";
+import Table_viewer from "../table_viewer/table_viewer.jsx";
 
 export const Chart = () => {
   const [loading, setLoading] = useState(false);
@@ -16,11 +16,20 @@ export const Chart = () => {
     columns: {},
   });
   const [widgets, setWidget] = useState({});
+  const [showGrid, setShowGrid] = useState(false);
 
   return (
     <>
-      <Data_reader setInputData={setInputData} setLoading={setLoading} />
+      <Data_reader
+        setInputData={setInputData}
+        setLoading={setLoading}
+        setShowGrid={setShowGrid}
+      />
       <File_reader loading={loading} setFileData={setInputData} />
+
+      {Object.keys(inputData.convertedData).length !== 0 && (
+        <Table_viewer showGrid={showGrid} setShowGrid={setShowGrid} />
+      )}
 
       <Commands
         setWidget={setWidget}
@@ -33,7 +42,7 @@ export const Chart = () => {
         setLoading={setLoading}
       />
       <Campaigns_with_date rootData={inputData} widget={widgets} />
-      <Data_grid rootData={inputData} />
+      {showGrid ? <Data_grid rootData={inputData} /> : ""}
     </>
   );
 };

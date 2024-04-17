@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 
 import Highcharts from "highcharts";
 import Dashboards from "@highcharts/dashboards";
@@ -12,23 +12,23 @@ Dashboards.PluginHandler.addPlugin(Dashboards.HighchartsPlugin);
 Dashboards.PluginHandler.addPlugin(Dashboards.DataGridPlugin);
 
 const Data_grid = ({ rootData }) => {
-  console.log(Object.keys(rootData.columns).length);
+  const columnOptions = useMemo(() => {
+    let data = [];
+    rootData.columns.dateColumns.forEach((thisArg) => {
+      data.push(thisArg);
+    });
+    return data.reduce((obj, key) => {
+      obj[key] = {
+        cellFormatter: function () {
+          return new Date(this.value).toISOString().substring(0, 10);
+        },
+      };
+      return obj;
+    }, {});
+  }, [rootData.columns.dateColumns]);
 
-  if (Object.keys(rootData.columns).length) {
-    console.log(rootData.columns.dateColumns["0"]);
-  }
-  //   console.log(
-  //     comands.map((el) => {
-  //       return {
-  //         el: {
-  //           cellFormatter: function () {
-  //             return new Date(this.value).toISOString().substring(0, 10);
-  //           },
-  //         },
-  //       };
-  //     })
-  //   );
   useEffect(() => {
+    console.log(columnOptions);
     Dashboards.board("container_id", {
       dataPool: {
         connectors: [
@@ -71,34 +71,12 @@ const Data_grid = ({ rootData }) => {
           },
           dataGridOptions: {
             editable: false,
-            columns: {
-              "Creation Date": {
-                cellFormatter: function () {
-                  return new Date(this.value).toISOString().substring(0, 10);
-                },
-              },
-              Начало: {
-                cellFormatter: function () {
-                  return new Date(this.value).toISOString().substring(0, 10);
-                },
-              },
-              "Дата окончания отчетности": {
-                cellFormatter: function () {
-                  return new Date(this.value).toISOString().substring(0, 10);
-                },
-              },
-
-              "Дата начала отчетности": {
-                cellFormatter: function () {
-                  return new Date(this.value).toISOString().substring(0, 10);
-                },
-              },
-            },
+            columns: columnOptions,
           },
         },
       ],
     });
-  }, [rootData]);
+  }, [rootData.convertedData]);
 
   return <div id="container_id" />;
 };
