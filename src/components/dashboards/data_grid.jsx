@@ -28,7 +28,6 @@ const Data_grid = ({ rootData }) => {
   }, [rootData.columns.dateColumns]);
 
   useEffect(() => {
-    console.log(columnOptions);
     Dashboards.board("container_id", {
       dataPool: {
         connectors: [

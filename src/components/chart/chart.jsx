@@ -6,7 +6,7 @@ import { Commands } from "../commands/commands.jsx";
 
 import File_reader from "../file_reader/file_reader.jsx";
 import Data_reader from "../data_reader/data_reader.jsx";
-import Data_grid from "../dashboards/data_grid.jsx";
+
 import Table_viewer from "../table_viewer/table_viewer.jsx";
 
 export const Chart = () => {
@@ -17,7 +17,8 @@ export const Chart = () => {
   });
   const [widgets, setWidget] = useState({});
   const [showGrid, setShowGrid] = useState(false);
-
+  const [grid, setGrid] = useState({});
+  console.log(Object.keys(inputData.convertedData).length);
   return (
     <>
       <Data_reader
@@ -27,10 +28,6 @@ export const Chart = () => {
         setWidget={setWidget}
       />
       <File_reader loading={loading} setFileData={setInputData} />
-
-      {Object.keys(inputData.convertedData).length !== 0 && (
-        <Table_viewer showGrid={showGrid} setShowGrid={setShowGrid} />
-      )}
 
       {Object.keys(inputData.convertedData).length !== 0 && (
         <>
@@ -47,11 +44,23 @@ export const Chart = () => {
           />
         </>
       )}
-
-      {Object.keys(widgets).length !== 0 && (
-        <Campaigns_with_date rootData={inputData} widget={widgets} />
+      {Object.keys(inputData.convertedData).length !== 0 && (
+        <Table_viewer
+          rootData={inputData}
+          setGrid={setGrid}
+          showGrid={showGrid}
+          setShowGrid={setShowGrid}
+        />
       )}
-      {showGrid ? <Data_grid rootData={inputData} /> : ""}
+      {Object.keys(widgets).length !== 0 || showGrid ? (
+        <Campaigns_with_date
+          grid={grid}
+          rootData={inputData}
+          widget={widgets}
+        />
+      ) : (
+        ""
+      )}
     </>
   );
 };
