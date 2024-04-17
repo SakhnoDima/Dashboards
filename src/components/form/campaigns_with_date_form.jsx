@@ -2,9 +2,31 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { StyledForm } from "./styles_forma";
 import { parser, widget_creator } from "../../services";
+import mixpanel from 'mixpanel-browser';
 
 export const WidgetCreator = ({ setWidget, loading, setLoading }) => {
   const [message, setMessage] = useState("");
+
+  const sendEvent = (message, fileData, chartOptions) => {
+    const mixpanelBody = {
+      distinct_id: 'user_id',
+    }
+
+    if (message) mixpanelBody.message = message;
+    if (chartOptions) mixpanelBody.bedrockResponsOptions = chartOptions;
+    if (fileData) mixpanelBody.fileData = fileData[0];
+
+    // if (fileData.length !== 0) {
+    //     let titleAndExample = ''
+    //
+    //     for (let key in fileData[0]) {
+    //         titleAndExample += `${key}-${fileData[0][key]} `
+    //     }
+    // }
+
+    mixpanel.init(import.meta.env.VITE_SOME_MIXPANEL_TOKEN, {debug: true});
+    mixpanel.track("user_message", mixpanelBody);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,6 +39,9 @@ export const WidgetCreator = ({ setWidget, loading, setLoading }) => {
       } catch (error) {
         console.log(error);
       } finally {
+        console.log('1')
+        sendEvent(message)
+        console.log('2')
         setMessage("");
         setLoading(false);
       }
