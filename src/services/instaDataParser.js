@@ -49,7 +49,14 @@ const instaDataParser = async (tableId, sheetName) => {
       return newObj;
     });
 
-    return { convertedData, columns };
+    return {
+      convertedData,
+      columns: {
+        numberColumns: [...columns.numberColumns],
+        dateColumns: [...columns.dateColumns],
+        stringColumns: [...columns.stringColumns],
+      },
+    };
   });
 };
 export { instaDataParser };
