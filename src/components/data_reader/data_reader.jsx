@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { instaDataParser } from "../../services";
 import { ErrorMessage, Forma, SubTitle, Title } from "./data_reader_styled";
 
-const Data_reader = ({ setInputData, setLoading, setShowGrid }) => {
+const Data_reader = ({ setInputData, setLoading, setShowGrid, setWidget }) => {
   const [tableId, setTableId] = useState("");
   const [sheetName, setSheetName] = useState("");
   const [error, setError] = useState(false);
@@ -12,6 +12,7 @@ const Data_reader = ({ setInputData, setLoading, setShowGrid }) => {
     e.preventDefault();
     setLoading(true);
     setShowGrid(false);
+    setWidget({});
     const data = await instaDataParser(tableId, sheetName);
 
     if (data.convertedData.length === 0) {

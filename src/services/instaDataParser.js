@@ -1,5 +1,6 @@
 import PublicGoogleSheetsParser from "public-google-sheets-parser";
 import { SHEET_ID, SHEET_NAME } from "../components/google_parser/parser";
+import { emptyFieldPlaceholder } from "./empty_field_placeholder";
 
 const options = { sheetName: SHEET_NAME.insta_data, useFormat: false };
 const unixTimeRegex = /Date\((\d+),(\d+),(\d+)\)/;
@@ -50,7 +51,11 @@ const instaDataParser = async (tableId, sheetName) => {
     });
 
     return {
-      convertedData,
+      convertedData: emptyFieldPlaceholder(convertedData, [
+        ...columns.numberColumns,
+        ...columns.dateColumns,
+        ...columns.stringColumns,
+      ]),
       columns: {
         numberColumns: [...columns.numberColumns],
         dateColumns: [...columns.dateColumns],

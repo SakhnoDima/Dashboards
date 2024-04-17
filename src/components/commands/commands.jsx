@@ -4,6 +4,7 @@ import { widget_creator } from "../../services";
 import { Box, Button } from "./commands_styled";
 
 export const Commands = ({ setWidget, setLoading, loading, rootData }) => {
+  console.log(rootData);
   const [commands, setCommands] = useState([]);
 
   useEffect(() => {
@@ -13,15 +14,15 @@ export const Commands = ({ setWidget, setLoading, loading, rootData }) => {
     const valueWithString = rootData.columns.stringColumns[0];
 
     setCommands([
-      `Create column chart use '${valueWithString}' and '${valueWithNumber}'`,
+      `Create column chart use '${valueWithDateOrString}' and '${valueWithNumber}, I'm using date data'`,
       `Create chart use '${valueWithDateOrString}' and '${valueWithNumber}' add plotLines to yAxis`,
       `Create ascending column chart use '${valueWithString}' and '${valueWithNumber}'`,
-      `Create chart use '${valueWithString}' and '${valueWithNumber}' add title "My new title", make each column different colors`,
+      `Create one chart use '${valueWithString}' and '${valueWithNumber}' add title "My new title", make each column different colors`,
       `Create pie chart use '${valueWithDateOrString}' and '${valueWithNumber}'`,
       `Create chart use '${valueWithDateOrString}' and '${valueWithNumber}' for one series and '${valueWithDateOrString}' and "${rootData.columns.numberColumns[1]}" for second series`,
       `Create chart use '${valueWithDateOrString}' and '${valueWithNumber}' for one series and '${valueWithDateOrString}' and "${rootData.columns.numberColumns[1]}" for second series and '${valueWithDateOrString}' and "${rootData.columns.numberColumns[2]}" for third series`,
       `Create two widgets use '${valueWithDateOrString}' and '${valueWithNumber}' for one and '${valueWithDateOrString}' and "${rootData.columns.numberColumns[1]}" for second`,
-      `Create three widgets use '${valueWithDateOrString}' and '${valueWithNumber}' for one,'${valueWithDateOrString}' and "${rootData.columns.numberColumns[1]}" for second, '${valueWithDateOrString}' and "${rootData.columns.numberColumns[2]}" for third`,
+      `Create three columns widgets use '${valueWithDateOrString}' and '${valueWithNumber}' for one,'${valueWithDateOrString}' and "${rootData.columns.numberColumns[1]}" for second, '${valueWithDateOrString}' and "${rootData.columns.numberColumns[2]}" for third`,
     ]);
   }, [rootData]);
 

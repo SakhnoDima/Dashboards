@@ -24,6 +24,7 @@ export const Chart = () => {
         setInputData={setInputData}
         setLoading={setLoading}
         setShowGrid={setShowGrid}
+        setWidget={setWidget}
       />
       <File_reader loading={loading} setFileData={setInputData} />
 
@@ -32,18 +33,21 @@ export const Chart = () => {
       )}
 
       {Object.keys(inputData.convertedData).length !== 0 && (
-        <Commands
-          rootData={inputData}
-          setWidget={setWidget}
-          setLoading={setLoading}
-          loading={loading}
-        />
+        <>
+          <Commands
+            rootData={inputData}
+            setWidget={setWidget}
+            setLoading={setLoading}
+            loading={loading}
+          />
+          <WidgetCreator
+            setWidget={setWidget}
+            loading={loading}
+            setLoading={setLoading}
+          />
+        </>
       )}
-      <WidgetCreator
-        setWidget={setWidget}
-        loading={loading}
-        setLoading={setLoading}
-      />
+
       {Object.keys(widgets).length !== 0 && (
         <Campaigns_with_date rootData={inputData} widget={widgets} />
       )}

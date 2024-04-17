@@ -41,6 +41,7 @@ const initConfig = {
     series: [
       {
         id: "daily-price",
+        colorByPoint: false,
         name: "",
         dataSorting: {
           enabled: false,
@@ -96,7 +97,10 @@ const widget_creator = async (message) => {
   You can use types like: line, spline, area, areaspline, column, bar, pie, scatter.
   Depending on the data the user provided add title, subtitle and description for accessibility.
   You should output a modified Highcharts chart JSON object based on the user's request.
-  To manipulate the sorting order, set the option dataSorting.enabled.true in series for descending and for ascending also add xAxis.reversed.true options.
+
+  To manipulate the sorting order, set the option dataSorting.enabled.true in series for descending and for ascending also add xAxis.reversed.true options use this options only if user requesting about it.
+
+  If user-request include columns with date, use the option xAxis.type: "datetime", if not use xAxis.type: "category"
   If the request is not clear or cannot be fulfilled, you should return the original chart JSON with an error message.
   
   Some examples of user requests could be:
@@ -144,6 +148,7 @@ Example input:
         "series": [
           {
             "id": "chartId",
+            "colorByPoint": false,
             "name": "",
             "dataSorting": {
                 "enabled": false,
@@ -230,11 +235,10 @@ Example response:
           {
             "seriesId": "daily-budget",
             "data": ["Creation Date", "Daily Budget"]
-          },
+            },
           {
             "seriesId": "clicks",
-            "data": ["Creation Date", "Clicks"],
-           
+            "data": ["Creation Date", "Clicks"],        
           }
         ]
       },
@@ -256,6 +260,7 @@ Example response:
           {
             "id": "daily-budget",
             "name": "Daily Budget",
+             "colorByPoint": false,
             "yAxis": 1
           }
         ],
@@ -375,25 +380,3 @@ Example response:
 };
 
 export { widget_creator };
-
-// [
-//   "Название группы объявлений",
-//   "Название объявления",
-//   "Статус показа",
-//   "Уровень показа",
-//   "Охват",
-//   "Показы",
-//   "Частота",
-//   "Тип результата",
-//   "Результат",
-//   "Цена за результат",
-//   "Сумма затрат (USD)",
-//   "Начало",
-//   "Конец",
-//   "CPM (цена за 1 000 показов)",
-//   "Клики по ссылке",
-//   "CPC (цена за клик по ссылке)",
-//   "CTR (кликабельность)",
-//   "Дата начала отчетности",
-//   "Дата окончания отчетности",
-// ];
