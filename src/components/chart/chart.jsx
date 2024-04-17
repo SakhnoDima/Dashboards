@@ -12,7 +12,7 @@ import Table_viewer from "../table_viewer/table_viewer.jsx";
 export const Chart = () => {
   const [loading, setLoading] = useState(false);
   const [inputData, setInputData] = useState({
-    convertedData: {},
+    convertedData: [],
     columns: {},
   });
   const [widgets, setWidget] = useState({});
@@ -24,6 +24,7 @@ export const Chart = () => {
         setInputData={setInputData}
         setLoading={setLoading}
         setShowGrid={setShowGrid}
+        setWidget={setWidget}
       />
       <File_reader loading={loading} setFileData={setInputData} />
 
@@ -31,17 +32,25 @@ export const Chart = () => {
         <Table_viewer showGrid={showGrid} setShowGrid={setShowGrid} />
       )}
 
-      <Commands
-        setWidget={setWidget}
-        setLoading={setLoading}
-        loading={loading}
-      />
-      <WidgetCreator
-        setWidget={setWidget}
-        loading={loading}
-        setLoading={setLoading}
-      />
-      <Campaigns_with_date rootData={inputData} widget={widgets} />
+      {Object.keys(inputData.convertedData).length !== 0 && (
+        <>
+          <Commands
+            rootData={inputData}
+            setWidget={setWidget}
+            setLoading={setLoading}
+            loading={loading}
+          />
+          <WidgetCreator
+            setWidget={setWidget}
+            loading={loading}
+            setLoading={setLoading}
+          />
+        </>
+      )}
+
+      {Object.keys(widgets).length !== 0 && (
+        <Campaigns_with_date rootData={inputData} widget={widgets} />
+      )}
       {showGrid ? <Data_grid rootData={inputData} /> : ""}
     </>
   );
