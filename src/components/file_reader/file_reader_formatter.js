@@ -1,9 +1,9 @@
-// import * as XLSX from 'xlsx';
 import ExcelJS from 'exceljs';
+import { emptyFieldPlaceholder } from "../../services/empty_field_placeholder.js";
 
 export const parseXlsxData = async (fileBuffer) => {
     const workbook = new ExcelJS.Workbook();
-    await workbook.xlsx.load(fileBuffer); // Завантаження даних з файла
+    await workbook.xlsx.load(fileBuffer);
     const worksheet = workbook.getWorksheet(1);
 
     const columns = {
@@ -11,17 +11,19 @@ export const parseXlsxData = async (fileBuffer) => {
         dateColumns: [],
         stringColumns: []
     };
+    const columnHasData = {};
 
-    let formattedData = [];
+    let convertedData = [];
 
     worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
         const rowObject = {};
         row.eachCell({ includeEmpty: true }, (cell, colNumber) => {
-            const value = cell.value;
-            const format = cell.numFmt; // Отримання формату клітинки
+            let value = cell.value;
+            const format = cell.numFmt;
             const header = worksheet.getRow(1).getCell(colNumber).value;
 
             if (rowNumber === 1) {
+                columnHasData[header] = false;
                 if (format) {
                     if (format.includes('yy') || format.includes('yyyy')) {
                         columns.dateColumns.push(header);
@@ -36,83 +38,55 @@ export const parseXlsxData = async (fileBuffer) => {
                     columns.stringColumns.push(header);
                 }
             } else {
-                if (columns.numberColumns.includes(header)) {
-                    if (typeof value === 'string') {
-                        // Очищення рядка: видалення символів валюти, заміна ком на крапки та видалення зайвих символів
+                if (typeof value === 'object' && value !== null && value.result !== undefined) {
+                    value = value.result;  // Використання результату формули, якщо він доступний
+                    columnHasData[header] = true;
+                }
+
+                if (value !== undefined && value !== null && value !== '') {
+                    columnHasData[header] = true;
+                }
+
+                if (columnHasData[header]) { // Додаємо дані тільки якщо колонка має дані
+                    if (columns.numberColumns.includes(header) && typeof value === 'string') {
                         const cleanedValue = value.replace(/[^0-9.,-]/g, '').replace(',', '.');
                         rowObject[header] = cleanedValue ? parseFloat(cleanedValue) : null;
-                    } else if (typeof value === 'number') {
-                        rowObject[header] = value; // Значення вже є числом
+                    } else if (columns.dateColumns.includes(header)) {
+                        if (value instanceof Date) {
+                            rowObject[header] = value.getTime();
+                        } else if (typeof value === 'string') {
+                            const unixTimeRegex = /Date\((\d+),(\d+),(\d+)\)/;
+                            const match = unixTimeRegex.exec(value);
+                            if (match) {
+                                const [, year, month, day] = match;
+                                const dateObj = new Date(+year, +month - 1, +day);
+                                rowObject[header] = dateObj.getTime();
+                            }
+                        }
                     } else {
-                        // Якщо значення не є ні рядком, ні числом
-                        rowObject[header] = value ? value.toString() : null;
+                        rowObject[header] = value;
                     }
-                } else if (columns.dateColumns.includes(header) && value instanceof Date) {
-                    rowObject[header] = value.getTime(); // Конвертація дати у Unix timestamp
-                } else {
-                    rowObject[header] = value;
                 }
             }
         });
 
-        if (rowNumber > 1) {
-            formattedData.push(rowObject);
+        if (rowNumber > 1 && Object.keys(rowObject).length > 0) {
+            convertedData.push(rowObject);
         }
     });
 
-    return { convertedData: formattedData, columns };
+    const finalColumns = {
+        numberColumns: columns.numberColumns.filter(header => columnHasData[header]),
+        dateColumns: columns.dateColumns.filter(header => columnHasData[header]),
+        stringColumns: columns.stringColumns.filter(header => columnHasData[header]),
+    };
+
+    return {
+        convertedData: emptyFieldPlaceholder(convertedData, [
+            ...finalColumns.numberColumns,
+            ...finalColumns.dateColumns,
+            ...finalColumns.stringColumns
+        ]),
+        columns: finalColumns
+    };
 };
-
-
-
-// export const parseXlsxData = (bstr) => {
-//     const workbook = XLSX.read(bstr, { type: "binary" });
-//     const wsname = workbook.SheetNames[0];
-//     const worksheet = workbook.Sheets[wsname];
-//     const data = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-//
-//     const firstRow = data[0]; // Перший рядок містить заголовки
-//     const secondRow = data[1]; // Другий рядок для визначення типу даних
-//
-//     const columns = {
-//         numberColumns: [],
-//         dateColumns: [],
-//         stringColumns: []
-//     };
-//
-//     // Функції для визначення типу
-//     const isNumeric = value => !isNaN(value) && isFinite(value);
-//     const isDate = value => !isNaN(Date.parse(value));
-//
-//     // Визначення типу стовпців на основі другого рядка
-//     Object.keys(secondRow).forEach(key => {
-//         const sampleValue = secondRow[key];
-//         if (isNumeric(sampleValue)) {
-//             columns.numberColumns.push(firstRow[key]); // Записуємо заголовок
-//         } else if (isDate(sampleValue)) {
-//             columns.dateColumns.push(firstRow[key]);
-//         } else {
-//             columns.stringColumns.push(firstRow[key]);
-//         }
-//     });
-//
-//     // Обробляємо всі рядки, крім перших двох
-//     const formattedData = XLSX.utils.sheet_to_json(worksheet, { header: 1 }).slice(2).map((row) => {
-//         let rowObject = {};
-//         firstRow.forEach((header, index) => {
-//             if (row[index] !== undefined && row[index] !== "") {
-//                 rowObject[header] = row[index];
-//             }
-//         });
-//         return rowObject;
-//     });
-//
-//     const convertedData = formattedData.filter((row) => {
-//         return (
-//             Object.keys(row).length > 0 &&
-//             Object.values(row).some(value => value !== "")
-//         );
-//     });
-//
-//     return { convertedData, columns };
-// };
