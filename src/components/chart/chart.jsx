@@ -64,5 +64,3 @@ export const Chart = () => {
     </>
   );
 };
-
-// Create ascending column chart use "Creation Date" and "Daily Budget"
