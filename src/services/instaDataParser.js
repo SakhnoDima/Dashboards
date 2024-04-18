@@ -17,7 +17,7 @@ const instaDataParser = async (tableId, sheetName) => {
       dateColumns: new Set(),
       stringColumns: new Set(),
     };
-
+    console.log(data);
     const convertedData = data.map((obj) => {
       const newObj = {};
       for (const key in obj) {
