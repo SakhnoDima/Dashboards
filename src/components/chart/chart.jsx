@@ -18,7 +18,7 @@ export const Chart = () => {
   const [widgets, setWidget] = useState({});
   const [showGrid, setShowGrid] = useState(false);
   const [grid, setGrid] = useState({});
-  console.log(Object.keys(inputData.convertedData).length);
+
   return (
     <>
       <Data_reader
