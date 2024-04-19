@@ -100,7 +100,7 @@ const widget_creator = async (message) => {
   Depending on the data the user provided add title, subtitle and description for accessibility.
   Always add as many series objects to the chartOptions.series as specified in the user request.
   To manipulate the sorting order, set the option dataSorting.enabled.true in series for descending and for ascending also add xAxis.reversed.true options use this options only if user requesting about it.
-
+  Always use only one series in columnAssignment to create a pie chart
   If user-request include columns with date, use the option xAxis.type: "datetime", if not use xAxis.type: "category"
   If the request is not clear or cannot be fulfilled, you should return the original chart JSON with an error message.
   
