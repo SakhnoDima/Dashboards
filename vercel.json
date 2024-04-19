@@ -1,20 +1,24 @@
 {
   "version": 2,
-  "public": false,
   "builds": [
     {
       "src": "package.json",
-      "use": "@vercel/node"
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
     }
   ],
   "routes": [
     {
-      "handle": "filesystem"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/index.html",
+      "dest": "/dist/index.html",
       "continue": true
     }
-  ]
+  ],
+  "env": {
+    "VITE_SOME_KEY_ID": "${VITE_SOME_KEY_ID}",
+    "VITE_SOME_ACCESS_KEY": "${VITE_SOME_ACCESS_KEY}",
+    "VITE_SOME_MIXPANEL_TOKEN": "${VITE_SOME_MIXPANEL_TOKEN}"
+  }
 }
