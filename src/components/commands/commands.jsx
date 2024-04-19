@@ -3,6 +3,16 @@ import React, { useEffect, useState } from "react";
 import { widget_creator } from "../../services";
 import { Box, Button } from "./commands_styled";
 
+export const customCommands = [
+  `Create pie chart use Название кампании and Сумма затрат (USD)`,
+  `Create bar chart with use Название кампании and Охват, Название кампании and Показы, Название кампанииand Сумма затрат (USD)`,
+  `Create line chart with 1 serias use Название кампании and Охват, Название кампанииand Сумма затрат (USD)`,
+  `Create area chart use Название группы объявлений and Охват, Название группы объявлений and Показы`,
+  `Create line chart use Название группы объявлений and Показы, Название группы объявлений and Клики по ссылке`,
+  `Create pie chart use Название группы объявлений and Сумма затрат (USD)`,
+  `Create chart use Начало and Охват`,
+];
+
 export const Commands = ({ setWidget, setLoading, loading, rootData }) => {
   const [commands, setCommands] = useState([]);
 
@@ -39,7 +49,7 @@ export const Commands = ({ setWidget, setLoading, loading, rootData }) => {
   };
   return (
     <Box>
-      {commands.map((el, ind) => (
+      {customCommands.map((el, ind) => (
         <Button
           disabled={loading}
           key={ind}

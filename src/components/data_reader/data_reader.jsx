@@ -14,7 +14,7 @@ const Data_reader = ({ setInputData, setLoading, setShowGrid, setWidget }) => {
     setShowGrid(false);
     setWidget({});
     const data = await instaDataParser(tableId, sheetName);
-
+    console.log(data);
     if (data.convertedData.length === 0) {
       setError(true);
     } else {

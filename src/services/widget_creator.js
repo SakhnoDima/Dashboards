@@ -43,6 +43,7 @@ const initConfig = {
         id: "daily-price",
         colorByPoint: false,
         name: "",
+        yAxis: 0,
         dataSorting: {
           enabled: false,
         },
@@ -94,10 +95,10 @@ const widget_creator = async (message) => {
 
   The input will be provided in the following format:
 
+  You should output a modified Highcharts chart JSON object based on the user's request.
   You can use types like: line, spline, area, areaspline, column, bar, pie, scatter.
   Depending on the data the user provided add title, subtitle and description for accessibility.
-  You should output a modified Highcharts chart JSON object based on the user's request.
-
+  Always add as many series objects to the chartOptions.series as specified in the user request.
   To manipulate the sorting order, set the option dataSorting.enabled.true in series for descending and for ascending also add xAxis.reversed.true options use this options only if user requesting about it.
 
   If user-request include columns with date, use the option xAxis.type: "datetime", if not use xAxis.type: "category"
@@ -149,6 +150,7 @@ Example input:
           {
             "id": "chartId",
             "colorByPoint": false,
+            "yAxis": 0,
             "name": "",
             "dataSorting": {
                 "enabled": false,
@@ -221,7 +223,7 @@ Example input:
 }
 
 </original-json>
-<user-request>Create chart use "Creation Date" and "Daily Budget" for one series and "Creation Date" and "Clicks" for second series </user-request>
+<user-request>Create line chart with one series use "Creation Date" and "Daily Budget", "Creation Date" and "Clicks". </user-request>
 
 Example response:
 {
@@ -260,7 +262,7 @@ Example response:
           {
             "id": "daily-budget",
             "name": "Daily Budget",
-             "colorByPoint": false,
+            "colorByPoint": false,
             "yAxis": 1
           }
         ],
