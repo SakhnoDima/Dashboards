@@ -30,8 +30,9 @@ export const Chart = () => {
       />
       <File_reader loading={loading} setFileData={setInputData} />
 
-      {Object.keys(inputData.convertedData).length !== 0 && (
+      {inputData.convertedData.length !== 0 && (
         <>
+          <Data_filters rootData={inputData} setInputData={setInputData} />
           <Commands
             rootData={inputData}
             setWidget={setWidget}
@@ -43,7 +44,7 @@ export const Chart = () => {
             loading={loading}
             setLoading={setLoading}
           />
-          <Data_filters />
+
           <Table_viewer
             rootData={inputData}
             setGrid={setGrid}
