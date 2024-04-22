@@ -8,6 +8,7 @@ import File_reader from "../file_reader/file_reader.jsx";
 import Data_reader from "../data_reader/data_reader.jsx";
 
 import Table_viewer from "../table_viewer/table_viewer.jsx";
+import Data_filters from "../data_filters/data_filters.jsx";
 
 export const Chart = () => {
   const [loading, setLoading] = useState(false);
@@ -29,8 +30,9 @@ export const Chart = () => {
       />
       <File_reader loading={loading} setFileData={setInputData} />
 
-      {Object.keys(inputData.convertedData).length !== 0 && (
+      {inputData.convertedData.length !== 0 && (
         <>
+          <Data_filters rootData={inputData} setInputData={setInputData} />
           <Commands
             rootData={inputData}
             setWidget={setWidget}
@@ -42,16 +44,16 @@ export const Chart = () => {
             loading={loading}
             setLoading={setLoading}
           />
+
+          <Table_viewer
+            rootData={inputData}
+            setGrid={setGrid}
+            showGrid={showGrid}
+            setShowGrid={setShowGrid}
+          />
         </>
       )}
-      {Object.keys(inputData.convertedData).length !== 0 && (
-        <Table_viewer
-          rootData={inputData}
-          setGrid={setGrid}
-          showGrid={showGrid}
-          setShowGrid={setShowGrid}
-        />
-      )}
+
       {Object.keys(widgets).length !== 0 || showGrid ? (
         <Campaigns_with_date
           grid={grid}
