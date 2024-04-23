@@ -33,73 +33,61 @@ const Data_filters = ({ setInputData, rootData }) => {
   }, [company]);
 
   const filterByCompanies = () => {
-    const filteredArr = data.convertedData.filter((el) => {
-      if (el["Название группы объявлений"] === "All") {
-        return el;
-      }
-    });
-    const resultedArr = filteredArr.map((el) => {
-      const {
+    const filteredArr = data.convertedData.filter(
+      (el) => el["Название группы объявлений"] === "All"
+    );
+    const resultedArr = filteredArr.map(
+      ({
         "Название группы объявлений": _,
         "Название объявления": __,
         ...filteredData
-      } = el;
-      return filteredData;
-    });
+      }) => filteredData
+    );
 
     setInputData((prevData) => ({
       ...prevData,
-      convertedData: [...resultedArr],
+      convertedData: resultedArr,
     }));
   };
-
   const filterByAddSet = (event) => {
     setCompany(event.target.value);
-    const filteredArr = data.convertedData.filter((el) => {
-      if (
+    const filteredArr = data.convertedData.filter(
+      (el) =>
         el["Название кампании"] === event.target.value &&
         el["Название группы объявлений"] !== "All" &&
         el["Название объявления"] === "All"
-      ) {
-        return el;
-      }
-    });
-    const resultedArr = filteredArr.map((el) => {
-      const {
+    );
+
+    const resultedArr = filteredArr.map(
+      ({
         "Название кампании": _,
         "Название объявления": __,
         ...filteredData
-      } = el;
-      return filteredData;
-    });
+      }) => filteredData
+    );
     setInputData((prevData) => ({
       ...prevData,
-      convertedData: [...resultedArr],
+      convertedData: resultedArr,
     }));
   };
   const filterBySet = (event) => {
-    const filteredArr = data.convertedData.filter((el) => {
-      if (
+    const filteredArr = data.convertedData.filter(
+      (el) =>
         el["Название кампании"] === company &&
         el["Название группы объявлений"] === event.target.value &&
         el["Название объявления"] !== "All"
-      ) {
-        return el;
-      }
-    });
+    );
 
-    const resultedArr = filteredArr.map((el) => {
-      const {
+    const resultedArr = filteredArr.map(
+      ({
         "Название кампании": _,
         "Название группы объявлений": __,
         ...filteredData
-      } = el;
-      return filteredData;
-    });
+      }) => filteredData
+    );
     setInputData((prevData) => ({
       ...prevData,
-      convertedData:
-        resultedArr.length > 0 ? [...resultedArr] : [...filteredArr],
+      convertedData: resultedArr.length > 0 ? resultedArr : filteredArr,
     }));
   };
 
