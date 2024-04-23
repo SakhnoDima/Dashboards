@@ -14,8 +14,8 @@ const Select = ({ onChange, arr, isCompany = true }) => {
       ) : (
         <option disabled={disable}>Групи оголошень</option>
       )}
-      {arr.map((el) => (
-        <option>{el}</option>
+      {arr.map((el, indx) => (
+        <option key={indx}>{el}</option>
       ))}
     </StyledSelect>
   );

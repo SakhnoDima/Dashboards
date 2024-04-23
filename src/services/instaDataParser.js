@@ -2,14 +2,14 @@ import PublicGoogleSheetsParser from "public-google-sheets-parser";
 import { SHEET_ID, SHEET_NAME } from "../components/google_parser/parser";
 import { emptyFieldPlaceholder } from "./empty_field_placeholder";
 
-const options = { sheetName: SHEET_NAME.insta_data, useFormat: false };
+const options = { sheetName: SHEET_NAME.seventhTable, useFormat: false };
 const unixTimeRegex = /Date\((\d+),(\d+),(\d+)\)/;
 const regex = /^(?:\$|%).*|.*(?:\$|%)$/;
 
-const instaDataParser = async (tableId, sheetName) => {
+const instaDataParser = async () => {
   const parser = new PublicGoogleSheetsParser(
-    tableId,
-    (options.sheetName = sheetName)
+    "1biCvz2yYY8P6e1Dfuw-ahYX7-rFpJtlXt2dVi76SLzY",
+    options
   );
   return parser.parse().then((data) => {
     const columns = {

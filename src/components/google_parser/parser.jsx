@@ -12,6 +12,7 @@ export const SHEET_NAME = {
   fourthTable: "list_4",
   insta_data: "insta_data",
   sixthTable: "list_6",
+  seventhTable: "insta_data_presntation",
 };
 
 export const Parser = () => {

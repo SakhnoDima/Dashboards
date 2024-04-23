@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { FcLineChart } from "react-icons/fc";
+
 import { Campaigns_with_date } from "../dashboards/campaigns_with_date";
 import { WidgetCreator } from "../form/campaigns_with_date_form";
-
 import { Commands } from "../commands/commands.jsx";
-
-import File_reader from "../file_reader/file_reader.jsx";
-import Data_reader from "../data_reader/data_reader.jsx";
-
-import Table_viewer from "../table_viewer/table_viewer.jsx";
-import Data_filters from "../data_filters/data_filters.jsx";
+import { instaDataParser } from "../../services/instaDataParser.js";
+import { Title } from "./chart_styled.js";
 
 export const Chart = () => {
   const [loading, setLoading] = useState(false);
@@ -17,52 +14,68 @@ export const Chart = () => {
     columns: {},
   });
   const [widgets, setWidget] = useState({});
-  const [showGrid, setShowGrid] = useState(false);
-  const [grid, setGrid] = useState({});
+
+  const columnOptions = useMemo(() => {
+    let data = [];
+    if (inputData.columns.dateColumns?.length > 0) {
+      inputData.columns.dateColumns.forEach((thisArg) => {
+        data.push(thisArg);
+      });
+      const options = data.reduce((obj, key) => {
+        obj[key] = {
+          cellFormatter: function () {
+            return new Date(this.value).toISOString().substring(0, 10);
+          },
+        };
+        return obj;
+      }, {});
+
+      return {
+        renderTo: "main-data-grid",
+        connector: {
+          id: "main-data-grid-id",
+        },
+        type: "DataGrid",
+        sync: {
+          highlight: true,
+        },
+        dataGridOptions: {
+          editable: false,
+          columns: options,
+        },
+      };
+    }
+  }, [inputData.columns.dateColumns]);
+
+  useEffect(() => {
+    instaDataParser().then((data) => {
+      setInputData(data);
+    });
+  }, []);
 
   return (
     <>
-      <Data_reader
-        setInputData={setInputData}
-        setLoading={setLoading}
-        setShowGrid={setShowGrid}
+      <Title>
+        <FcLineChart />
+        Smart Dashboard
+      </Title>
+      <Commands
+        rootData={inputData}
         setWidget={setWidget}
+        setLoading={setLoading}
+        loading={loading}
       />
-      <File_reader loading={loading} setFileData={setInputData} />
+      <WidgetCreator
+        setWidget={setWidget}
+        loading={loading}
+        setLoading={setLoading}
+      />
 
-      {inputData.convertedData.length !== 0 && (
-        <>
-          <Data_filters rootData={inputData} setInputData={setInputData} />
-          <Commands
-            rootData={inputData}
-            setWidget={setWidget}
-            setLoading={setLoading}
-            loading={loading}
-          />
-          <WidgetCreator
-            setWidget={setWidget}
-            loading={loading}
-            setLoading={setLoading}
-          />
-
-          <Table_viewer
-            rootData={inputData}
-            setGrid={setGrid}
-            showGrid={showGrid}
-            setShowGrid={setShowGrid}
-          />
-        </>
-      )}
-
-      {Object.keys(widgets).length !== 0 || showGrid ? (
-        <Campaigns_with_date
-          grid={grid}
-          rootData={inputData}
-          widget={widgets}
-        />
-      ) : (
-        ""
-      )}
+      <Campaigns_with_date
+        grid={columnOptions}
+        rootData={inputData}
+        widget={widgets}
+      />
     </>
   );
 };
