@@ -16,5 +16,5 @@ export const DesBox = styled.div`
 `;
 
 export const CartBox = styled.div`
-  min-width: 1000px;
+  max-width: 1600px;
 `;

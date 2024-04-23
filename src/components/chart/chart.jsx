@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { FcLineChart } from "react-icons/fc";
+import { FcPieChart } from "react-icons/fc";
 
 import { Campaigns_with_date } from "../dashboards/campaigns_with_date";
 import { WidgetCreator } from "../form/campaigns_with_date_form";
@@ -56,7 +56,7 @@ export const Chart = () => {
   return (
     <>
       <Title>
-        <FcLineChart />
+        <FcPieChart />
         Smart Dashboard
       </Title>
       <Commands

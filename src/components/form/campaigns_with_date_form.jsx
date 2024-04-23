@@ -55,6 +55,7 @@ export const WidgetCreator = ({ setWidget, loading, setLoading }) => {
           name="message"
           onChange={(e) => setMessage(e.target.value)}
           value={message}
+          placeholder="Your prompt"
         />
         <button disabled={loading} type="submit">
           {loading ? "Submitting..." : "Submit"}
