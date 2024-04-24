@@ -2,7 +2,7 @@ import React from "react";
 import * as XLSX from "xlsx";
 import Button from "../button/button";
 
-const DataLoader = ({ rootData, columns, setInputData }) => {
+const DataLoader = ({ rootData, columns, setInputData, loading }) => {
   const handleExport = () => {
     // Создание рабочей книги и листа
     const worksheet = XLSX.utils.json_to_sheet(rootData);
@@ -52,8 +52,13 @@ const DataLoader = ({ rootData, columns, setInputData }) => {
   };
   return (
     <>
-      <Button onClick={handleExport} children={"Save doc"} />
-      <input type="file" accept=".xlsx, .xls" onChange={handleImport} />
+      <Button disabled={loading} onClick={handleExport} children={"Save doc"} />
+      <input
+        disabled={loading}
+        type="file"
+        accept=".xlsx, .xls"
+        onChange={handleImport}
+      />
     </>
   );
 };

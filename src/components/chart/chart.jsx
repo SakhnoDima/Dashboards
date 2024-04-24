@@ -42,6 +42,7 @@ export const Chart = () => {
         setLoading={setLoading}
       />
       <DataLoader
+        loading={loading}
         rootData={inputData.convertedData}
         columns={inputData.columns}
         setInputData={setInputData}
