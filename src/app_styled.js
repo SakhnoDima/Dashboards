@@ -8,11 +8,19 @@ export const MainBox = styled.div`
 
 export const DesBox = styled.div`
   max-width: 375px;
-  padding: 16px;
+  padding: 100px 16px 16px;
+
   h2 {
     text-align: center;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
   }
+`;
+
+export const StyledSpanFirst = styled.span`
+  color: #00bcd4;
+`;
+export const StyledSpanSecond = styled.span`
+  color: #448aff;
 `;
 
 export const CartBox = styled.div`

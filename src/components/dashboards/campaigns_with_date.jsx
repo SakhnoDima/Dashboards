@@ -16,7 +16,38 @@ Dashboards.DataGridPlugin.custom.connectDataGrid(DataGrid);
 Dashboards.PluginHandler.addPlugin(Dashboards.HighchartsPlugin);
 Dashboards.PluginHandler.addPlugin(Dashboards.DataGridPlugin);
 
-export const Campaigns_with_date = ({ rootData, widget, grid }) => {
+export const Campaigns_with_date = ({ rootData, widget }) => {
+  const grid = {
+    renderTo: "main-data-grid",
+    connector: {
+      id: "main-data-grid-id",
+    },
+    type: "DataGrid",
+    sync: {
+      highlight: true,
+    },
+    dataGridOptions: {
+      editable: false,
+      columns: {
+        Начало: {
+          cellFormatter: function () {
+            return new Date(this.value).toISOString().substring(0, 10);
+          },
+        },
+        "Дата начала отчетности": {
+          cellFormatter: function () {
+            return new Date(this.value).toISOString().substring(0, 10);
+          },
+        },
+        "Дата окончания отчетности": {
+          cellFormatter: function () {
+            return new Date(this.value).toISOString().substring(0, 10);
+          },
+        },
+      },
+    },
+  };
+
   useEffect(() => {
     Dashboards.board("container", {
       dataPool: {
@@ -34,14 +65,14 @@ export const Campaigns_with_date = ({ rootData, widget, grid }) => {
         ],
       },
       editMode: {
-        enabled: true,
+        enabled: false,
         contextMenu: {
           enabled: true,
           items: ["editMode"],
         },
       },
       gui: widget.gui ? widget.gui : rootLayOutCampaigns,
-      components: widget.components ? [...widget.components, grid] : [grid],
+      components: widget.components ? [...widget.components] : [grid],
     });
   }, [rootData, widget, grid]);
 

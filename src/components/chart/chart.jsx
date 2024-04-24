@@ -15,38 +15,6 @@ export const Chart = () => {
   });
   const [widgets, setWidget] = useState({});
 
-  const columnOptions = useMemo(() => {
-    let data = [];
-    if (inputData.columns.dateColumns?.length > 0) {
-      inputData.columns.dateColumns.forEach((thisArg) => {
-        data.push(thisArg);
-      });
-      const options = data.reduce((obj, key) => {
-        obj[key] = {
-          cellFormatter: function () {
-            return new Date(this.value).toISOString().substring(0, 10);
-          },
-        };
-        return obj;
-      }, {});
-
-      return {
-        renderTo: "main-data-grid",
-        connector: {
-          id: "main-data-grid-id",
-        },
-        type: "DataGrid",
-        sync: {
-          highlight: true,
-        },
-        dataGridOptions: {
-          editable: false,
-          columns: options,
-        },
-      };
-    }
-  }, [inputData.columns.dateColumns]);
-
   useEffect(() => {
     instaDataParser().then((data) => {
       setInputData(data);
@@ -71,11 +39,7 @@ export const Chart = () => {
         setLoading={setLoading}
       />
 
-      <Campaigns_with_date
-        grid={columnOptions}
-        rootData={inputData}
-        widget={widgets}
-      />
+      <Campaigns_with_date rootData={inputData} widget={widgets} />
     </>
   );
 };
