@@ -29,17 +29,17 @@ export const Campaigns_with_date = ({ rootData, widget }) => {
     dataGridOptions: {
       editable: false,
       columns: {
-        Начало: {
+        Start: {
           cellFormatter: function () {
             return new Date(this.value).toISOString().substring(0, 10);
           },
         },
-        "Дата начала отчетности": {
+        "Reporting start date": {
           cellFormatter: function () {
             return new Date(this.value).toISOString().substring(0, 10);
           },
         },
-        "Дата окончания отчетности": {
+        "Reporting end date": {
           cellFormatter: function () {
             return new Date(this.value).toISOString().substring(0, 10);
           },
