@@ -72,7 +72,7 @@ export const Campaigns_with_date = ({ rootData, widget }) => {
         },
       },
       gui: widget.gui ? widget.gui : rootLayOutCampaigns,
-      components: widget.components ? [...widget.components] : [grid],
+      components: widget.components ? [...widget.components, grid] : [grid],
     });
   }, [rootData, widget, grid]);
 
