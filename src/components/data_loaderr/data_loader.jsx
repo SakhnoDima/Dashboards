@@ -1,6 +1,7 @@
 import React from "react";
 import * as XLSX from "xlsx";
 import Button from "../button/button";
+import { DisabledInput, FaceInput, MainBox } from "./data_loader_styled";
 
 const DataLoader = ({ rootData, columns, setInputData, loading }) => {
   const handleExport = () => {
@@ -51,15 +52,18 @@ const DataLoader = ({ rootData, columns, setInputData, loading }) => {
     }
   };
   return (
-    <>
+    <MainBox>
       <Button disabled={loading} onClick={handleExport} children={"Save doc"} />
-      <input
-        disabled={loading}
-        type="file"
-        accept=".xlsx, .xls"
-        onChange={handleImport}
-      />
-    </>
+      <FaceInput>
+        Load doc
+        <DisabledInput
+          disabled={loading}
+          type="file"
+          accept=".xlsx, .xls"
+          onChange={handleImport}
+        />
+      </FaceInput>
+    </MainBox>
   );
 };
 
