@@ -14,8 +14,10 @@ export const Button = styled.button`
   padding: 8px;
   cursor: pointer;
   background-color: inherit;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 8px;
+  transition: 500ms;
+
   &:hover {
     background-color: darkgray;
     color: white;

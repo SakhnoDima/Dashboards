@@ -6,11 +6,11 @@ export const StyledBtn = styled.button`
   outline: none;
   color: black;
   padding: 8px;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 8px;
   cursor: pointer;
   background-color: white;
-
+  transition: 500ms;
   &:hover {
     background-color: darkgray;
     color: white;
