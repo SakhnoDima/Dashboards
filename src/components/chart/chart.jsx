@@ -41,7 +41,11 @@ export const Chart = () => {
         loading={loading}
         setLoading={setLoading}
       />
-      <DataLoader data={inputData.convertedData} />
+      <DataLoader
+        rootData={inputData.convertedData}
+        columns={inputData.columns}
+        setInputData={setInputData}
+      />
 
       <Campaigns_with_date rootData={inputData} widget={widgets} />
     </>

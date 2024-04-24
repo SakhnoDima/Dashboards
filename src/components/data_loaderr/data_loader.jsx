@@ -2,10 +2,10 @@ import React from "react";
 import * as XLSX from "xlsx";
 import Button from "../button/button";
 
-const DataLoader = ({ data }) => {
+const DataLoader = ({ rootData, columns, setInputData }) => {
   const handleExport = () => {
     // Создание рабочей книги и листа
-    const worksheet = XLSX.utils.json_to_sheet(data);
+    const worksheet = XLSX.utils.json_to_sheet(rootData);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Report");
 
@@ -15,6 +15,7 @@ const DataLoader = ({ data }) => {
     // Скачивание файла
     XLSX.writeFile(workbook, fileName);
   };
+
   const handleImport = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -22,12 +23,27 @@ const DataLoader = ({ data }) => {
       reader.onload = function (e) {
         const data = new Uint8Array(e.target.result);
         const workbook = XLSX.read(data, { type: "array" });
-
         // Пример обработки первого листа файла
         const firstSheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[firstSheetName];
         const jsonData = XLSX.utils.sheet_to_json(worksheet);
-        console.log(jsonData); // вывод данных в консоль для проверки
+
+        const columnsName = [
+          ...columns.numberColumns,
+          ...columns.dateColumns,
+          ...columns.stringColumns,
+        ];
+
+        for (const key in jsonData[0]) {
+          if (!columnsName.includes(key)) {
+            alert("File isn't valid");
+            return;
+          }
+        }
+        setInputData((prevData) => ({
+          ...prevData,
+          convertedData: jsonData,
+        }));
       };
       reader.readAsArrayBuffer(file);
     } else {
