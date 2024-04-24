@@ -47,7 +47,7 @@ const DataLoader = ({ rootData, columns, setInputData }) => {
       };
       reader.readAsArrayBuffer(file);
     } else {
-      alert("Пожалуйста, выберите файл Excel для загрузки.");
+      alert("Please select an Excel file to download.");
     }
   };
   return (
