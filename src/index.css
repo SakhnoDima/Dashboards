@@ -19,3 +19,12 @@ h1#title {
   text-align: center;
   color: #fff;
 }
+
+.highcharts-plot-line {
+  stroke-dasharray: 2px;
+  stroke: var(--highcharts-color-3);
+}
+
+.highcharts-plot-line-label {
+  fill: var(--highcharts-color-3);
+}

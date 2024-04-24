@@ -74,6 +74,20 @@ const initConfig = {
         title: {
           text: "",
         },
+        plotLines: [
+          {
+            value: null,
+            dashStyle: "shortdash",
+            width: 2,
+            label: {
+              text: "",
+              align: "right",
+              style: {
+                color: "",
+              },
+            },
+          },
+        ],
       },
     ],
     plotOptions: {
@@ -181,7 +195,22 @@ Example input:
           {
             "title": {
               "text": ""
-            }
+               },
+            "plotLines": [
+               {
+               "value": null,
+                "color": "",
+                "dashStyle": "shortdash",
+                "width": 2,
+                "label": {
+                  "text": "",
+                  "align": "right",
+                  "style": {
+                     "color": "#B73C28",
+                   },
+                },
+              },
+            ],
           }
         ],
         "plotOptions": {
@@ -289,7 +318,22 @@ Example response:
           {
             "title": {
               "text": "Daily Budget"
-            }
+            },
+               "plotLines": [
+               {
+               "value": null,
+                "color": "",
+                "dashStyle": "shortdash",
+                "width": 2,
+                "label": {
+                  "text": "",
+                  "align": "right",
+                  "style": {
+                     "color": "#B73C28",
+                   },
+                },
+              },
+            ],
           },
           {
             "title": {

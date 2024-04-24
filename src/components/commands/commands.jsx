@@ -4,15 +4,17 @@ import { widget_creator } from "../../services";
 import { Box, Button } from "./commands_styled";
 
 export const customCommands = [
-  `Create pie chart use Название кампании and Сумма затрат (USD)`,
-  `Create chart with 1 series use Название кампании and Сумма затрат (USD) add plotLines to yAxis, value 80`,
-  `Create bar chart with use Название кампании and Частота, Название кампании and Сумма затрат (USD), Название кампанииand and CPC (цена за клик по ссылке)`,
+  `Create pie chart use Campaign Name and Cost (USD)`,
 
-  `Create line chart with 1 series use Название кампании and CPC (цена за клик по ссылке), Название кампании and CTR (кликабельность)`,
+  `Create chart with 1 series use Campaign Name and Cost (USD). Add plotLines to yAxis, text: "Max value", value 80"`,
 
-  `Create line chart with 1 series use Название кампании and Охват, Название кампании and Сумма затрат (USD)`,
+  `Create bar chart with use "Campaign Name" and "Frequency", "Campaign Name" and Cost (USD), "Campaign Name" and "CPC"`,
 
-  "Create two widgets use Название кампании and Охват, Название кампании and Показы for one and Название кампании and Частота, Название кампании and Сумма затрат (USD) for second",
+  `Create line chart with 1 series use Campaign Name and CPC, Campaign Name and CTR`,
+
+  `Create line chart with 1 series use Campaign Name and Coverage, Campaign Name and Cost (USD)`,
+
+  "Create two widgets use Campaign Name and Coverage, Campaign Name and Impressions for one and Campaign Name and Frequency, Campaign Name and Cost (USD) for second",
 ];
 
 export const Commands = ({ setWidget, setLoading, loading, rootData }) => {
