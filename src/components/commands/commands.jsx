@@ -14,7 +14,7 @@ export const customCommands = [
 
   `Create line chart with 1 series use Campaign Name and Coverage, Campaign Name and Cost (USD)`,
 
-  "Create two widgets use Campaign Name and Coverage, Campaign Name and Impressions for one and Campaign Name and Frequency, Campaign Name and Cost (USD) for second",
+  "Create two widgets use Campaign Name and CTR, Campaign Name and CPC for one and Campaign Name and CTR, Campaign Name and CPM",
 ];
 
 export const Commands = ({ setWidget, setLoading, loading, rootData }) => {
