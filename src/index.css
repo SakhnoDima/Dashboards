@@ -1,15 +1,26 @@
 @import url("https://code.highcharts.com/css/highcharts.css");
 @import url("https://code.highcharts.com/dashboards/css/datagrid.css");
 @import url("https://code.highcharts.com/dashboards/css/dashboards.css");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 
 body {
   margin: 0;
+  background-color: #f2f2f2ed;
+  font-family: "IBM Plex Sans", sans-serif;
 }
 
 h1,
 h2,
-p {
+p,
+ul,
+li {
   margin: 0;
+  padding: 0;
+}
+
+ul,
+li {
+  list-style: none;
 }
 
 h1#title {
@@ -27,4 +38,16 @@ h1#title {
 
 .highcharts-plot-line-label {
   fill: var(--highcharts-color-3);
+}
+
+.title-icon {
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

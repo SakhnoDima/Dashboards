@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { StyledForm } from "./styles_forma";
-import { parser, widget_creator } from "../../services";
+import { widget_creator } from "../../services";
 import mixpanel from "mixpanel-browser";
+import { TbMessage2 } from "react-icons/tb";
 
 export const WidgetCreator = ({ setWidget, loading, setLoading }) => {
   const [message, setMessage] = useState("");
@@ -58,7 +59,7 @@ export const WidgetCreator = ({ setWidget, loading, setLoading }) => {
           placeholder="Your prompt"
         />
         <button disabled={loading} type="submit">
-          {loading ? "Submitting..." : "Submit"}
+          <TbMessage2 />
         </button>
       </StyledForm>
     </>

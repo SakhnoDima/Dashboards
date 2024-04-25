@@ -8,11 +8,33 @@ export const MainBox = styled.div`
 
 export const DesBox = styled.div`
   max-width: 375px;
-  padding: 100px 16px 16px;
+  height: 875px;
+  line-height: 1.5;
+  padding: 50px 16px 16px;
+  background-color: white;
+  border-radius: 8px;
 
   h2 {
     text-align: center;
     margin-bottom: 16px;
+  }
+  ul {
+    li {
+      margin-bottom: 4px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      svg {
+        width: 25px;
+        fill: #448aff;
+      }
+      p {
+        width: 300px;
+      }
+    }
+    :last-child {
+      margin-bottom: 0;
+    }
   }
 `;
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { FcPieChart } from "react-icons/fc";
+import { IconContext } from "react-icons";
 
 import { Campaigns_with_date } from "../dashboards/campaigns_with_date";
 import { WidgetCreator } from "../form/campaigns_with_date_form";
@@ -27,8 +28,10 @@ export const Chart = () => {
   return (
     <>
       <Title>
-        <FcPieChart />
         Smart Dashboard
+        <IconContext.Provider value={{ className: "title-icon" }}>
+          <FcPieChart />
+        </IconContext.Provider>
       </Title>
       <Commands
         rootData={inputData}

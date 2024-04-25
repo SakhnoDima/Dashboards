@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledForm = styled.form`
+  position: relative;
   margin: 0 auto;
   margin-bottom: 10px;
   display: flex;
@@ -10,14 +11,32 @@ export const StyledForm = styled.form`
     width: 100%;
     padding: 10px;
     outline: none;
-    border: 1px solid black;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-    border-right: none;
+    border: 2px solid black;
+    border-radius: 8px;
+    transition: 700ms;
+    &:focus {
+      border-color: #448aff;
+    }
   }
 
   button {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    position: absolute;
+    border: none;
+    background-color: inherit;
+    padding: 0;
+    top: 5px;
+    right: 8px;
+
+    svg {
+      width: 30px;
+      height: 27px;
+      cursor: pointer;
+      transition: 500ms;
+      &:hover {
+        stroke: #448aff;
+      }
+    }
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
       rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
       rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     border: 1px solid black;
@@ -30,6 +49,6 @@ export const StyledForm = styled.form`
     &:hover {
       background-color: darkgray;
       color: white;
-    }
+    } */
   }
 `;

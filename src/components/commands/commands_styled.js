@@ -1,25 +1,46 @@
 import styled from "styled-components";
 
 export const Box = styled.div`
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  gap: 18px;
+
+  :nth-child(1),
+  :nth-child(4) {
+    &:hover {
+      color: #448aff;
+      box-shadow: rgba(68, 138, 255, 0.4) -5px 5px,
+        rgba(68, 138, 255, 0.3) -10px 10px, rgba(68, 138, 255, 0.2) -15px 15px,
+        rgba(68, 138, 255, 0.1) -20px 20px, rgba(68, 138, 255, 0.05) -25px 25px;
+    }
+  }
+  :nth-child(3),
+  :nth-child(6) {
+    &:hover {
+      color: #448aff;
+      box-shadow: rgba(68, 138, 255, 0.4) 5px 5px,
+        rgba(68, 138, 255, 0.3) 10px 10px, rgba(68, 138, 255, 0.2) 15px 15px,
+        rgba(68, 138, 255, 0.1) 20px 20px, rgba(68, 138, 255, 0.05) 25px 25px;
+    }
+  }
 `;
 
 export const Button = styled.button`
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  padding: 8px;
+  font-family: "IBM Plex Sans", sans-serif;
+  line-height: 1.5;
+  font-weight: 500;
+  padding: 20px;
   cursor: pointer;
-  background-color: inherit;
-  border: 1px solid black;
+  background-color: white;
+  border: none;
   border-radius: 8px;
-  transition: 500ms;
+  transition: 700ms;
 
   &:hover {
-    background-color: darkgray;
-    color: white;
+    color: #448aff;
+    box-shadow: rgba(68, 138, 255, 0.4) 0px 5px,
+      rgba(68, 138, 255, 0.3) 0px 10px, rgba(68, 138, 255, 0.2) 0px 15px,
+      rgba(68, 138, 255, 0.1) 0px 20px, rgba(68, 138, 255, 0.05) 0px 25px;
   }
 `;
