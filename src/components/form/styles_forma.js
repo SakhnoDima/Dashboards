@@ -9,13 +9,19 @@ export const StyledForm = styled.form`
 
   input {
     width: 100%;
-    padding: 10px 40px 10px 10px;
+    padding: 16px 40px 16px 10px;
     outline: none;
-    border: 2px solid black;
+    border: 2px solid white;
     border-radius: 8px;
     transition: 700ms;
+    box-shadow: var(--shadow);
+
     &:focus {
       border-color: #448aff;
+    }
+    &:hover {
+      box-shadow: rgba(68, 138, 255, 0.15) 0px 5px 15px,
+        rgba(68, 138, 255, 0.05) 0px 5px 10px;
     }
   }
 
@@ -24,7 +30,7 @@ export const StyledForm = styled.form`
     border: none;
     background-color: inherit;
     padding: 0;
-    top: 5px;
+    top: 10px;
     right: 8px;
 
     svg {
@@ -32,23 +38,10 @@ export const StyledForm = styled.form`
       height: 27px;
       cursor: pointer;
       transition: 500ms;
+      stroke: #448aff;
       &:hover {
-        stroke: #448aff;
+        stroke: #00bcd4;
       }
     }
-    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-      rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-    border: 1px solid black;
-    border-left: none;
-    background-color: white;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-    cursor: pointer;
-    transition: 500ms;
-    &:hover {
-      background-color: darkgray;
-      color: white;
-    } */
   }
 `;

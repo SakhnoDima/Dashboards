@@ -5,3 +5,7 @@ export const Title = styled.h1`
   text-align: center;
   margin-bottom: 80px;
 `;
+
+export const DashBox = styled.div`
+  position: relative;
+`;

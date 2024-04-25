@@ -13,7 +13,7 @@ export const DesBox = styled.div`
   padding: 50px 16px 16px;
   background-color: white;
   border-radius: 8px;
-
+  box-shadow: var(--shadow);
   h2 {
     text-align: center;
     margin-bottom: 16px;

@@ -1,10 +1,15 @@
 import styled from "styled-components";
 
 export const MainBox = styled.div`
+  /* position: absolute;
+  top: 5px;
+  right: 10px; */
+  z-index: 1;
   max-width: 408px;
   margin: 0 auto 20px;
   display: flex;
   gap: 8px;
+  justify-content: center;
 `;
 
 export const DisabledInput = styled.input`
@@ -14,20 +19,23 @@ export const DisabledInput = styled.input`
 `;
 
 export const FaceInput = styled.label`
+  width: 200px;
+  color: #448aff;
   display: flex;
+  gap: 4px;
   justify-content: center;
   font-size: large;
-  width: 200px;
+  box-sizing: border-box;
   outline: none;
-  color: black;
-  padding: 8px 0px;
-  border: 1px solid black;
+  box-shadow: var(--shadow);
+  padding: 8px 8px;
+  border: none;
   border-radius: 8px;
-  cursor: pointer;
   background-color: white;
   transition: 700ms;
+  cursor: pointer;
+
   &:hover {
-    color: #448aff;
     border-color: #448aff;
     box-shadow: rgba(68, 138, 255, 0.4) 5px 5px,
       rgba(68, 138, 255, 0.3) 10px 10px, rgba(68, 138, 255, 0.2) 15px 15px,
