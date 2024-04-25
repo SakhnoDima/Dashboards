@@ -5,9 +5,13 @@ import { widget_creator } from "../../services";
 import mixpanel from "mixpanel-browser";
 import { TbArrowUpRight } from "react-icons/tb";
 
-export const WidgetCreator = ({ setWidget, loading, setLoading }) => {
-  const [message, setMessage] = useState("");
-
+export const WidgetCreator = ({
+  setWidget,
+  loading,
+  setLoading,
+  message,
+  setMessage,
+}) => {
   const sendEvent = (message, fileData, chartOptions) => {
     const mixpanelBody = {
       distinct_id: "user_id",
@@ -42,7 +46,6 @@ export const WidgetCreator = ({ setWidget, loading, setLoading }) => {
         console.log(error);
       } finally {
         sendEvent(message);
-        setMessage("");
         setLoading(false);
       }
     }

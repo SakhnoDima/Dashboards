@@ -192,21 +192,21 @@ Example input:
       }
     }
   ],
-  "gui": {
+ "gui": {
     "layouts": [
       {
         "rows": [
           {
             "cells": [
               {
-                "id": "main-data-grid"
+                "id": "first-widget"
               }
             ]
           },
           {
             "cells": [
               {
-                "id": "first-widget"
+                "id": "main-data-grid"
               }
             ]
           }
@@ -300,7 +300,7 @@ Example response:
       }
     }
   ],
-  "gui": {
+ "gui": {
     "layouts": [
       {
         "rows": [
@@ -310,11 +310,18 @@ Example response:
                 "id": "first-widget"
               }
             ]
+          },
+          {
+            "cells": [
+              {
+                "id": "main-data-grid"
+              }
+            ]
           }
         ]
       }
     ]
-  },
+  }
 }
 
 </instructions>

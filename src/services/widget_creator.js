@@ -234,17 +234,17 @@ Example input:
           {
             "cells": [
               {
-                "id": "main-data-grid"
+                "id": "first-widget"
               }
             ]
           },
           {
             "cells": [
               {
-                "id": "first-widget"
+                "id": "main-data-grid"
               }
             ]
-          }
+          },
         ]
       }
     ]
@@ -363,17 +363,16 @@ Example response:
           {
             "cells": [
               {
+                "id": "first-widget"
+              }
+            ]
+          }, {
+            "cells": [
+              {
                 "id": "main-data-grid"
               }
             ]
           },
-          {
-            "cells": [
-              {
-                "id": "first-widget"
-              }
-            ]
-          }
         ]
       }
     ]

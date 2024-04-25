@@ -7,7 +7,7 @@ import { Campaigns_with_date } from "../dashboards/campaigns_with_date";
 import { WidgetCreator } from "../form/campaigns_with_date_form";
 import { Commands } from "../commands/commands.jsx";
 import { instaDataParser } from "../../services/instaDataParser.js";
-import { Title } from "./chart_styled.js";
+import { CartBox, DashBox, Title } from "./chart_styled.js";
 
 import DataLoader from "../data_loaderr/data_loader.jsx";
 
@@ -18,6 +18,7 @@ export const Chart = () => {
     columns: {},
   });
   const [widgets, setWidget] = useState({});
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     instaDataParser().then((data) => {
@@ -26,7 +27,7 @@ export const Chart = () => {
   }, []);
 
   return (
-    <>
+    <CartBox>
       <Title>
         Smart Dashboard
         <IconContext.Provider value={{ className: "title-icon" }}>
@@ -38,20 +39,24 @@ export const Chart = () => {
         setWidget={setWidget}
         setLoading={setLoading}
         loading={loading}
+        setMessage={setMessage}
       />
       <WidgetCreator
+        message={message}
+        setMessage={setMessage}
         setWidget={setWidget}
         loading={loading}
         setLoading={setLoading}
       />
-      <DataLoader
-        loading={loading}
-        rootData={inputData.convertedData}
-        columns={inputData.columns}
-        setInputData={setInputData}
-      />
-
-      <Campaigns_with_date rootData={inputData} widget={widgets} />
-    </>
+      <DashBox>
+        <DataLoader
+          loading={loading}
+          rootData={inputData.convertedData}
+          columns={inputData.columns}
+          setInputData={setInputData}
+        />
+        <Campaigns_with_date rootData={inputData} widget={widgets} />
+      </DashBox>
+    </CartBox>
   );
 };
