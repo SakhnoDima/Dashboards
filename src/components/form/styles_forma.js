@@ -9,7 +9,7 @@ export const StyledForm = styled.form`
 
   input {
     width: 100%;
-    padding: 10px;
+    padding: 10px 40px 10px 10px;
     outline: none;
     border: 2px solid black;
     border-radius: 8px;
