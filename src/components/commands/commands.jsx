@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-
 import { widget_creator } from "../../services";
 import { Box, Button } from "./commands_styled";
 
@@ -17,10 +15,11 @@ export const customCommands = [
   "Create two widgets use Campaign Name and CTR, Campaign Name and CPC for one and Campaign Name and CTR, Campaign Name and CPM",
 ];
 
-export const Commands = ({ setWidget, setLoading, loading, rootData }) => {
+export const Commands = ({ setWidget, setLoading, loading, setMessage }) => {
   const handleClick = async (command) => {
     try {
       setLoading(true);
+      setMessage(command);
       const res = await widget_creator(command);
       console.log(res);
       setWidget(JSON.parse(res));

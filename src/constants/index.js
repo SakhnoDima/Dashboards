@@ -14,17 +14,17 @@ export const rootLayOut = {
         {
           cells: [
             {
-              id: "grid-widget",
+              id: "first-widget",
+            },
+            {
+              id: "second-widget",
             },
           ],
         },
         {
           cells: [
             {
-              id: "first-widget",
-            },
-            {
-              id: "second-widget",
+              id: "grid-widget",
             },
           ],
         },
@@ -40,17 +40,17 @@ export const rootLayOutCampaigns = {
         {
           cells: [
             {
-              id: "main-data-grid",
+              id: "first-widget",
+            },
+            {
+              id: "second-widget",
             },
           ],
         },
         {
           cells: [
             {
-              id: "first-widget",
-            },
-            {
-              id: "second-widget",
+              id: "main-data-grid",
             },
           ],
         },

@@ -54,7 +54,7 @@ h1#title {
 }
 
 .title-icon {
-  animation: spin 2s linear infinite;
+  animation: spin 3s linear infinite;
 }
 @keyframes spin {
   from {
