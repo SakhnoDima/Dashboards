@@ -7,8 +7,6 @@ export const MainBox = styled.div`
   display: flex;
   gap: 80px;
   background: linear-gradient(30deg, #cad0ff, #e3e3e3);
-  //background: linear-gradient(40deg, #8399a2, #eef2f3);
-  }
 `;
 
 export const DesBox = styled.div`
@@ -16,9 +14,9 @@ export const DesBox = styled.div`
   height: 875px;
   line-height: 1.5;
   padding: 50px 16px 16px;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
   border-radius: 8px;
-  color: #31363F;
+  color: #31363f;
   font-family: "Nunito", sans-serif;
   box-shadow: 10px 10px 15px #3d3d3d30;
 
@@ -37,7 +35,7 @@ export const DesBox = styled.div`
         padding: 4px 4px 0 0;
         width: 20px;
         height: 20px;
-        fill: #6499E9;
+        fill: #6499e9;
       }
       p {
         width: 300px;
