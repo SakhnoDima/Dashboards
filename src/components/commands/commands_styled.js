@@ -1,46 +1,31 @@
 import styled from "styled-components";
 
+import "./../fonts/fonts.css";
+
 export const Box = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
-
-  :nth-child(1),
-  :nth-child(4) {
-    &:hover {
-      color: #448aff;
-      box-shadow: rgba(68, 138, 255, 0.4) -5px 5px,
-        rgba(68, 138, 255, 0.3) -10px 10px, rgba(68, 138, 255, 0.2) -15px 15px,
-        rgba(68, 138, 255, 0.1) -20px 20px, rgba(68, 138, 255, 0.05) -25px 25px;
-    }
-  }
-  :nth-child(3),
-  :nth-child(6) {
-    &:hover {
-      color: #448aff;
-      box-shadow: rgba(68, 138, 255, 0.4) 5px 5px,
-        rgba(68, 138, 255, 0.3) 10px 10px, rgba(68, 138, 255, 0.2) 15px 15px,
-        rgba(68, 138, 255, 0.1) 20px 20px, rgba(68, 138, 255, 0.05) 25px 25px;
-    }
-  }
 `;
 
 export const Button = styled.button`
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
   line-height: 1.5;
   font-weight: 500;
+  color: #31363F;
   padding: 20px;
   cursor: pointer;
-  background-color: white;
+  background-color: #EEEEEE;
   border: none;
   border-radius: 8px;
-  transition: 700ms;
+  box-shadow: 5px 5px 10px #3d3d3d30;
+  transition: ease-in-out 200ms;
 
   &:hover {
-    color: #448aff;
-    box-shadow: rgba(68, 138, 255, 0.4) 0px 5px,
-      rgba(68, 138, 255, 0.3) 0px 10px, rgba(68, 138, 255, 0.2) 0px 15px,
-      rgba(68, 138, 255, 0.1) 0px 20px, rgba(68, 138, 255, 0.05) 0px 25px;
+    color: #111111;
+    transform: translateY(-5px);
+    box-shadow: 10px 10px 15px #3d3d3d30;
   }
 `;

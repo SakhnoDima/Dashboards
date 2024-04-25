@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { StyledForm } from "./styles_forma";
 import { widget_creator } from "../../services";
 import mixpanel from "mixpanel-browser";
-import { TbMessage2 } from "react-icons/tb";
+import { TbArrowUpRight } from "react-icons/tb";
 
 export const WidgetCreator = ({ setWidget, loading, setLoading }) => {
   const [message, setMessage] = useState("");
@@ -59,7 +59,8 @@ export const WidgetCreator = ({ setWidget, loading, setLoading }) => {
           placeholder="Your prompt"
         />
         <button disabled={loading} type="submit">
-          <TbMessage2 />
+          Send
+          <TbArrowUpRight />
         </button>
       </StyledForm>
     </>

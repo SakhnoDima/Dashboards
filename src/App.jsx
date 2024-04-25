@@ -1,4 +1,8 @@
 import { FcBarChart } from "react-icons/fc";
+import { FaChartLine } from "react-icons/fa";
+import { FaChartBar } from "react-icons/fa";
+import { FaChartArea } from "react-icons/fa";
+
 import { Chart } from "./components/chart/chart";
 import {
   CartBox,
@@ -7,6 +11,8 @@ import {
   StyledSpanFirst,
   StyledSpanSecond,
 } from "./app_styled";
+
+import './components/fonts/fonts.css'
 
 const App = () => {
   return (
@@ -39,18 +45,18 @@ const App = () => {
         <p>Analyze campaign performance:</p>
         <ul>
           <li>
-            <FcBarChart />
+            <FaChartLine />
             <p>Cost per result, compare how the cost per click has changed.</p>
           </li>
           <li>
-            <FcBarChart />
+            <FaChartBar />
             <p>
               Analyze CPC and CPM indicators to determine the most and least
               cost-effective campaigns.
             </p>
           </li>
           <li>
-            <FcBarChart />
+            <FaChartArea />
             <p>Coverage and engagement analysis using campaign metrics.</p>
           </li>
         </ul>

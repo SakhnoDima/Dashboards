@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
+import "./../fonts/fonts.css";
+
 export const MainBox = styled.div`
   max-width: 408px;
   margin: 0 auto 20px;
   display: flex;
-  gap: 8px;
+  gap: 20px;
 `;
 
 export const DisabledInput = styled.input`
@@ -14,23 +16,30 @@ export const DisabledInput = styled.input`
 `;
 
 export const FaceInput = styled.label`
+  font-family: "Nunito", sans-serif;
+  font-size: large;
+  font-weight: 600;
   display: flex;
   justify-content: center;
-  font-size: large;
+  align-items: center;
   width: 200px;
   outline: none;
   color: black;
-  padding: 8px 0px;
-  border: 1px solid black;
+  padding: 8px 0;
+  border: none;
   border-radius: 8px;
+  box-shadow: 5px 5px 10px #3d3d3d30;
   cursor: pointer;
-  background-color: white;
-  transition: 700ms;
+  background-color: #EEEEEE;
+  transition: 0.3s;
   &:hover {
-    color: #448aff;
-    border-color: #448aff;
-    box-shadow: rgba(68, 138, 255, 0.4) 5px 5px,
-      rgba(68, 138, 255, 0.3) 10px 10px, rgba(68, 138, 255, 0.2) 15px 15px,
-      rgba(68, 138, 255, 0.1) 20px 20px, rgba(68, 138, 255, 0.05) 25px 25px;
+    box-shadow: 10px 10px 15px #3d3d3d40;
+    transform: translateY(-5px);
+  }
+
+  svg {
+    height: 20px;
+    width: 20px;
+    margin-left: 10px;
   }
 `;

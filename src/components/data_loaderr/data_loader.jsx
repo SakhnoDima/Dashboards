@@ -3,6 +3,8 @@ import * as XLSX from "xlsx";
 import Button from "../button/button";
 import { DisabledInput, FaceInput, MainBox } from "./data_loader_styled";
 
+import { TbArrowBarToDown } from "react-icons/tb";
+
 const DataLoader = ({ rootData, columns, setInputData, loading }) => {
   const handleExport = () => {
     // Создание рабочей книги и листа
@@ -53,9 +55,10 @@ const DataLoader = ({ rootData, columns, setInputData, loading }) => {
   };
   return (
     <MainBox>
-      <Button disabled={loading} onClick={handleExport} children={"Save doc"} />
+      <Button disabled={loading} onClick={handleExport} children={"Export Table"} />
       <FaceInput>
-        Load doc
+        Import Table
+        <TbArrowBarToDown />
         <DisabledInput
           disabled={loading}
           type="file"

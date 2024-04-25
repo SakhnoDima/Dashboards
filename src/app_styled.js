@@ -1,9 +1,14 @@
 import styled from "styled-components";
 
+import "./components/fonts/fonts.css";
+
 export const MainBox = styled.div`
   padding: 40px 20px;
   display: flex;
   gap: 80px;
+  background: linear-gradient(30deg, #cad0ff, #e3e3e3);
+  //background: linear-gradient(40deg, #8399a2, #eef2f3);
+  }
 `;
 
 export const DesBox = styled.div`
@@ -11,22 +16,28 @@ export const DesBox = styled.div`
   height: 875px;
   line-height: 1.5;
   padding: 50px 16px 16px;
-  background-color: white;
+  background-color: #EEEEEE;
   border-radius: 8px;
+  color: #31363F;
+  font-family: "Nunito", sans-serif;
+  box-shadow: 10px 10px 15px #3d3d3d30;
 
   h2 {
     text-align: center;
     margin-bottom: 16px;
+    color: #222831;
   }
   ul {
     li {
       margin-bottom: 4px;
       display: flex;
       gap: 8px;
-      align-items: center;
+      align-items: start;
       svg {
-        width: 25px;
-        fill: #448aff;
+        padding: 4px 4px 0 0;
+        width: 20px;
+        height: 20px;
+        fill: #6499E9;
       }
       p {
         width: 300px;
@@ -39,10 +50,16 @@ export const DesBox = styled.div`
 `;
 
 export const StyledSpanFirst = styled.span`
-  color: #00bcd4;
+  // color: #00bcd4;
+  background: -webkit-linear-gradient(120deg, #0061ff, #60efff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 export const StyledSpanSecond = styled.span`
-  color: #448aff;
+  // color: #448aff;
+  background: -webkit-linear-gradient(35deg, #696eff, #f8acff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 
 export const CartBox = styled.div`
