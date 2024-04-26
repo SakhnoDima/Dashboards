@@ -29,6 +29,7 @@ export const DesBox = styled.div`
     }
   }
   @media (max-width: 1140px) {
+    padding-top: 25px;
     min-width: 200px;
     max-width: 200px;
     height: 600px;
