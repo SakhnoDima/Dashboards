@@ -5,7 +5,7 @@ export const CartBox = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: xxx-large;
+  font-size: x-large;
   text-align: center;
   margin-bottom: 80px;
 

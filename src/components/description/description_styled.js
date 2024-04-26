@@ -29,18 +29,17 @@ export const DesBox = styled.div`
     }
   }
   @media (max-width: 1140px) {
-    min-width: 215px;
-    max-width: 275px;
+    min-width: 200px;
+    max-width: 200px;
     height: 600px;
-    font-size: small;
+    font-size: x-small;
     font-size: x-small;
     line-height: 1.5;
+    height: 500px;
   }
   @media (max-width: 768px) {
-    max-width: 215px;
+    max-width: 200px;
     padding: 30px 16px 16px;
-    font-size: x-small;
-    height: 500px;
   }
 `;
 

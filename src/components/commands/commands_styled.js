@@ -46,10 +46,12 @@ export const Button = styled.button`
   }
 
   @media (max-width: 1140px) {
-    font-size: small;
+    font-size: x-small;
+    padding: 10px;
   }
   @media (max-width: 768px) {
     font-size: x-small;
+    padding: 5px;
   }
 `;
 

@@ -62,7 +62,11 @@ button {
     font-size: x-small;
   }
 }
-
+@media (max-width: 1140px) {
+  .highcharts-dashboards-wrapper {
+    font-size: small;
+  }
+}
 h1#title {
   padding-top: 10px;
   margin: 0;
