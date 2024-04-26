@@ -46,7 +46,7 @@ export const Button = styled.button`
   }
 
   @media (max-width: 1140px) {
-    font-size: x-small;
+    font-size: small;
     padding: 10px;
   }
   @media (max-width: 768px) {

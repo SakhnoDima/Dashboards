@@ -1,10 +1,10 @@
 import styled from "styled-components";
 export const DesBox = styled.div`
-  max-width: 375px;
-  height: 675px;
+  max-width: 350px;
+  height: 700px;
   font-size: medium;
   line-height: 1.5;
-  padding: 50px 16px 16px;
+  padding: 20px 16px 16px;
   background-color: white;
   border-radius: 8px;
   box-shadow: var(--shadow);
@@ -33,12 +33,13 @@ export const DesBox = styled.div`
     min-width: 200px;
     max-width: 200px;
     height: 600px;
-    font-size: x-small;
-    font-size: x-small;
+
+    font-size: small;
     line-height: 1.5;
     height: 500px;
   }
   @media (max-width: 768px) {
+    font-size: x-small;
     max-width: 200px;
     padding: 30px 16px 16px;
   }
