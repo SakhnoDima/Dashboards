@@ -12,7 +12,6 @@ const instaDataParser = async () => {
     options
   );
   return parser.parse().then((data) => {
-    console.log(data);
     const columns = {
       numberColumns: new Set(),
       dateColumns: new Set(),

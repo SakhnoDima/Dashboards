@@ -21,7 +21,6 @@ export const Commands = ({ setWidget, setLoading, loading, setMessage }) => {
     try {
       setLoading(true);
       const res = await widget_creator(command);
-      console.log(res);
       setWidget(JSON.parse(res));
     } catch (error) {
       console.log(error);
