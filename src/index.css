@@ -57,6 +57,11 @@ button {
   --highcharts-highlight-color-20: #448aff;
   --highcharts-highlight-color-10: #448aff;
 }
+@media (max-width: 768px) {
+  .highcharts-dashboards-wrapper {
+    font-size: x-small;
+  }
+}
 
 h1#title {
   padding-top: 10px;

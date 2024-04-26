@@ -48,6 +48,9 @@ export const Button = styled.button`
   @media (max-width: 1140px) {
     font-size: small;
   }
+  @media (max-width: 768px) {
+    font-size: x-small;
+  }
 `;
 
 export const SvgIconMessage = styled(TbMessage2)`

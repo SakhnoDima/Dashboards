@@ -34,6 +34,11 @@ export const DesBox = styled.div`
     line-height: 1.5;
     overflow-y: scroll;
   }
+  @media (max-width: 768px) {
+    padding: 30px 16px 16px;
+    font-size: x-small;
+    height: 500px;
+  }
 `;
 
 export const StyledSpanFirst = styled.span`
