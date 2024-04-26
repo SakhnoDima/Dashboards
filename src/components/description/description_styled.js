@@ -1,6 +1,7 @@
 import styled from "styled-components";
 export const DesBox = styled.div`
-  max-width: 350px;
+  max-width: 370px;
+  min-width: 230px;
   height: 700px;
   font-size: medium;
   line-height: 1.5;

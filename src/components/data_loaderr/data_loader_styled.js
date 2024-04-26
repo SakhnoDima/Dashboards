@@ -41,4 +41,11 @@ export const FaceInput = styled.label`
       rgba(68, 138, 255, 0.3) 10px 10px, rgba(68, 138, 255, 0.2) 15px 15px,
       rgba(68, 138, 255, 0.1) 20px 20px, rgba(68, 138, 255, 0.05) 25px 25px;
   }
+  @media (max-width: 1140px) {
+    width: 150px;
+    font-size: small;
+  }
+  @media (max-width: 768px) {
+    font-size: x-small;
+  }
 `;

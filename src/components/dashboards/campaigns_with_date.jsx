@@ -47,7 +47,7 @@ export const Campaigns_with_date = ({ rootData, widget }) => {
       },
     },
   };
-
+  console.log(1);
   useEffect(() => {
     Dashboards.board("container", {
       dataPool: {

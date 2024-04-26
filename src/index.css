@@ -39,7 +39,6 @@ button {
   border-radius: 10px;
   background-color: #eeeeee;
   box-shadow: var(--shadow);
-  margin-top: 50px;
 
   --highcharts-background-color: #eeeeee;
   --highcharts-neutral-color-100: #222831;

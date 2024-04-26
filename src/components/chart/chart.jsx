@@ -36,7 +36,6 @@ export const Chart = () => {
         </IconContext.Provider>
       </Title>
       <Commands
-        rootData={inputData}
         setWidget={setWidget}
         setLoading={setLoading}
         loading={loading}

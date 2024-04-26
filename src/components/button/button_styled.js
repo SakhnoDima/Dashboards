@@ -5,6 +5,7 @@ export const StyledBtn = styled.button`
   display: flex;
   gap: 4px;
   justify-content: center;
+  align-items: center;
   width: 200px;
   font-family: "IBM Plex Sans", sans-serif;
   font-size: large;
@@ -22,5 +23,12 @@ export const StyledBtn = styled.button`
     box-shadow: rgba(68, 138, 255, 0.4) -5px 5px,
       rgba(68, 138, 255, 0.3) -10px 10px, rgba(68, 138, 255, 0.2) -15px 15px,
       rgba(68, 138, 255, 0.1) -20px 20px, rgba(68, 138, 255, 0.05) -25px 25px;
+  }
+  @media (max-width: 1140px) {
+    width: 150px;
+    font-size: small;
+  }
+  @media (max-width: 768px) {
+    font-size: x-small;
   }
 `;
