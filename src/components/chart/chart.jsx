@@ -10,6 +10,7 @@ import { instaDataParser } from "../../services/instaDataParser.js";
 import { CartBox, DashBox, Title } from "./chart_styled.js";
 
 import DataLoader from "../data_loaderr/data_loader.jsx";
+import Loader from "../loader/loader.jsx";
 
 export const Chart = () => {
   const [loading, setLoading] = useState(false);
@@ -41,13 +42,19 @@ export const Chart = () => {
         loading={loading}
         setMessage={setMessage}
       />
-      <WidgetCreator
-        message={message}
-        setMessage={setMessage}
-        setWidget={setWidget}
-        loading={loading}
-        setLoading={setLoading}
-      />
+
+      {loading ? (
+        <Loader />
+      ) : (
+        <WidgetCreator
+          message={message}
+          setMessage={setMessage}
+          setWidget={setWidget}
+          loading={loading}
+          setLoading={setLoading}
+        />
+      )}
+
       <DashBox>
         <DataLoader
           loading={loading}

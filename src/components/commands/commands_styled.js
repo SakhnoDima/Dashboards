@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { TbMessage2 } from "react-icons/tb";
 
 export const Box = styled.div`
   margin-bottom: 20px;
@@ -9,7 +10,6 @@ export const Box = styled.div`
   :nth-child(1),
   :nth-child(4) {
     &:hover {
-      color: #448aff;
       box-shadow: rgba(68, 138, 255, 0.4) -5px 5px,
         rgba(68, 138, 255, 0.3) -10px 10px, rgba(68, 138, 255, 0.2) -15px 15px,
         rgba(68, 138, 255, 0.1) -20px 20px, rgba(68, 138, 255, 0.05) -25px 25px;
@@ -18,7 +18,6 @@ export const Box = styled.div`
   :nth-child(3),
   :nth-child(6) {
     &:hover {
-      color: #448aff;
       box-shadow: rgba(68, 138, 255, 0.4) 5px 5px,
         rgba(68, 138, 255, 0.3) 10px 10px, rgba(68, 138, 255, 0.2) 15px 15px,
         rgba(68, 138, 255, 0.1) 20px 20px, rgba(68, 138, 255, 0.05) 25px 25px;
@@ -27,6 +26,10 @@ export const Box = styled.div`
 `;
 
 export const Button = styled.button`
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  text-align: center;
   font-family: "IBM Plex Sans", sans-serif;
   font-size: medium;
   font-weight: 500;
@@ -38,8 +41,9 @@ export const Button = styled.button`
   border-radius: 8px;
   transition: 700ms;
   box-shadow: var(--shadow);
+
   &:hover {
-    color: #448aff;
+    color: var(--color-first-accent);
     box-shadow: rgba(68, 138, 255, 0.4) 0px 5px,
       rgba(68, 138, 255, 0.3) 0px 10px, rgba(68, 138, 255, 0.2) 0px 15px,
       rgba(68, 138, 255, 0.1) 0px 20px, rgba(68, 138, 255, 0.05) 0px 25px;
@@ -47,5 +51,12 @@ export const Button = styled.button`
 
   @media (max-width: 1140px) {
     font-size: small;
+  }
+`;
+
+export const SvgIconMessage = styled(TbMessage2)`
+  color: var(--color-first-accent);
+  &:hover {
+    box-shadow: none;
   }
 `;

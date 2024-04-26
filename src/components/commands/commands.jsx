@@ -1,10 +1,11 @@
 import { widget_creator } from "../../services";
-import { Box, Button } from "./commands_styled";
+
+import { Box, Button, SvgIconMessage } from "./commands_styled";
 
 export const customCommands = [
   `Create bar chart use Campaign Name and Cost (USD), Campaign Name and Clicks`,
 
-  `Show two line widgets. The first will show how CPC changed by Campaign Name, and the second will show how Clicks changed by Campaign Name`,
+  `Show two line charts. The first will show how CPC changed by Campaign Name, and the second will show how Clicks changed by Campaign Name`,
 
   `Create chart with 1 series use Campaign Name and Cost (USD). Add plotLines to yAxis, text: "Max value", value 80"`,
 
@@ -19,13 +20,13 @@ export const Commands = ({ setWidget, setLoading, loading, setMessage }) => {
   const handleClick = async (command) => {
     try {
       setLoading(true);
-      setMessage(command);
       const res = await widget_creator(command);
       console.log(res);
       setWidget(JSON.parse(res));
     } catch (error) {
       console.log(error);
     } finally {
+      setMessage(command);
       setLoading(false);
     }
   };
@@ -38,6 +39,8 @@ export const Commands = ({ setWidget, setLoading, loading, setMessage }) => {
           type="button"
           onClick={() => handleClick(el)}
         >
+          <SvgIconMessage />
+
           {el}
         </Button>
       ))}

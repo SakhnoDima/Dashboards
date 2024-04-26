@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { StyledForm } from "./styles_forma";
 import { widget_creator } from "../../services";
 import mixpanel from "mixpanel-browser";
-import { TbMessage2 } from "react-icons/tb";
+import { BsSend } from "react-icons/bs";
 
 export const WidgetCreator = ({
   setWidget,
@@ -62,7 +62,7 @@ export const WidgetCreator = ({
           placeholder="Your prompt"
         />
         <button disabled={loading} type="submit">
-          <TbMessage2 />
+          <BsSend />
         </button>
       </StyledForm>
     </>

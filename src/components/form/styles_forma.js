@@ -38,9 +38,9 @@ export const StyledForm = styled.form`
       height: 27px;
       cursor: pointer;
       transition: 500ms;
-      stroke: #448aff;
+      color: var(--color-first-accent);
       &:hover {
-        stroke: #00bcd4;
+        color: var(--color-second-accent);
       }
     }
   }
