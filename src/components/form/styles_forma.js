@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { TbMessage2 } from "react-icons/tb";
 
 export const StyledForm = styled.form`
   position: relative;
@@ -9,7 +10,7 @@ export const StyledForm = styled.form`
 
   input {
     width: 100%;
-    padding: 16px 40px 16px 10px;
+    padding: 16px 40px 16px 35px;
     outline: none;
     border: 2px solid white;
     border-radius: 8px;
@@ -43,5 +44,16 @@ export const StyledForm = styled.form`
         color: var(--color-second-accent);
       }
     }
+  }
+`;
+
+export const SvgIconMessage = styled(TbMessage2)`
+  position: absolute;
+  top: 17px;
+  left: 17px;
+  color: var(--color-first-accent);
+
+  &:hover {
+    box-shadow: none;
   }
 `;

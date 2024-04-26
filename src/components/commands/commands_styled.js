@@ -7,16 +7,14 @@ export const Box = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
 
-  :nth-child(1),
-  :nth-child(4) {
+  button:nth-child(3n + 1) {
     &:hover {
       box-shadow: rgba(68, 138, 255, 0.4) -5px 5px,
         rgba(68, 138, 255, 0.3) -10px 10px, rgba(68, 138, 255, 0.2) -15px 15px,
         rgba(68, 138, 255, 0.1) -20px 20px, rgba(68, 138, 255, 0.05) -25px 25px;
     }
   }
-  :nth-child(3),
-  :nth-child(6) {
+  button:nth-child(3n + 3) {
     &:hover {
       box-shadow: rgba(68, 138, 255, 0.4) 5px 5px,
         rgba(68, 138, 255, 0.3) 10px 10px, rgba(68, 138, 255, 0.2) 15px 15px,
@@ -28,8 +26,6 @@ export const Box = styled.div`
 export const Button = styled.button`
   display: flex;
   flex-wrap: wrap;
-  position: relative;
-  text-align: center;
   font-family: "IBM Plex Sans", sans-serif;
   font-size: medium;
   font-weight: 500;
