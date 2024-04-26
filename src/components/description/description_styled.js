@@ -1,7 +1,8 @@
 import styled from "styled-components";
 export const DesBox = styled.div`
   max-width: 375px;
-  height: 875px;
+  height: 675px;
+  font-size: medium;
   line-height: 1.5;
   padding: 50px 16px 16px;
   background-color: white;
@@ -21,13 +22,17 @@ export const DesBox = styled.div`
         width: 25px;
         fill: #448aff;
       }
-      p {
-        width: 300px;
-      }
     }
     :last-child {
       margin-bottom: 0;
     }
+  }
+  @media (max-width: 1140px) {
+    max-width: 275px;
+    height: 600px;
+    font-size: small;
+    line-height: 1.5;
+    overflow-y: scroll;
   }
 `;
 

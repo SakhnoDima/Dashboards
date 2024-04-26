@@ -44,4 +44,8 @@ export const Button = styled.button`
       rgba(68, 138, 255, 0.3) 0px 10px, rgba(68, 138, 255, 0.2) 0px 15px,
       rgba(68, 138, 255, 0.1) 0px 20px, rgba(68, 138, 255, 0.05) 0px 25px;
   }
+
+  @media (max-width: 1140px) {
+    font-size: small;
+  }
 `;

@@ -20,21 +20,11 @@ const Description = () => {
         prompts.
       </h2>
       <p>
-        This approach aids in data visualization, allowing analysts to quickly
-        comprehend the data and enabling users to save time when creating
-        charts.
-      </p>
-      <br />
-      <p>
-        Smart Dashboards are designed to simplify charting for users. There's no
-        need to be a programmer just enter a prompt and obtain the result.
-      </p>
-      <br />
-      <p>
-        This example makes it possible to analyze real statistics of advertising
-        companies of an Instagram user. Use simple prompts to create attractive
-        and informative diagrams. Indicate in your request the parameters you
-        are interested in to receive an analysis of the advertising campaign.
+        Smart Dashboards simplify charting for users without requiring
+        programming skills. Simply enter a prompt to receive results. This tool
+        allows for the analysis of real statistics from an Instagram user's
+        advertising campaigns. Just specify the parameters you are interested in
+        your request to receive an analysis of the advertising campaign.
       </p>
       <br />
       <p>Analyze campaign performance:</p>

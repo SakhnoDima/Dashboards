@@ -33,7 +33,27 @@ button {
 }
 
 .highcharts-dashboards-wrapper {
-  padding-top: 40px;
+  font-family: "IBM Plex Sans", sans-serif;
+  border-radius: 10px;
+  background-color: #eeeeee;
+  box-shadow: var(--shadow);
+  margin-top: 50px;
+
+  --highcharts-background-color: #eeeeee;
+  --highcharts-neutral-color-100: #222831;
+  --highcharts-neutral-color-80: #222831;
+  --highcharts-neutral-color-60: #31363f;
+  --highcharts-neutral-color-40: #222831;
+  --highcharts-neutral-color-20: #222831;
+  --highcharts-neutral-color-10: #222831;
+  --highcharts-neutral-color-5: #eeeeee;
+  --highcharts-neutral-color-3: #dddddd;
+  --highcharts-neutral-color-0: #222831;
+  --highcharts-highlight-color-100: #448aff;
+  --highcharts-highlight-color-80: #448aff;
+  --highcharts-highlight-color-60: #448aff;
+  --highcharts-highlight-color-20: #448aff;
+  --highcharts-highlight-color-10: #448aff;
 }
 
 h1#title {
