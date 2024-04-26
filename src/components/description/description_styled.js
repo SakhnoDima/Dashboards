@@ -8,6 +8,7 @@ export const DesBox = styled.div`
   background-color: white;
   border-radius: 8px;
   box-shadow: var(--shadow);
+  overflow-y: scroll;
   h2 {
     text-align: center;
     margin-bottom: 16px;
@@ -32,7 +33,6 @@ export const DesBox = styled.div`
     height: 600px;
     font-size: small;
     line-height: 1.5;
-    overflow-y: scroll;
   }
   @media (max-width: 768px) {
     padding: 30px 16px 16px;
