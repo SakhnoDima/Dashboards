@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { StyledForm, SvgIconMessage } from "./styles_forma";
+import { StyledForm, MessageIconInput } from "./styles_form";
 import { widget_creator } from "../../services";
 import mixpanel from "mixpanel-browser";
 import { BsSend } from "react-icons/bs";
@@ -61,7 +61,7 @@ export const WidgetCreator = ({
           value={message}
           placeholder="Your prompt"
         />
-        <SvgIconMessage />
+        <MessageIconInput />
         <button disabled={loading} type="submit">
           <BsSend />
         </button>

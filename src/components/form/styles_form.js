@@ -61,15 +61,12 @@ export const StyledForm = styled.form`
   }
 `;
 
-export const SvgIconMessage = styled(TbMessage2)`
+export const MessageIconInput = styled(TbMessage2)`
   position: absolute;
   top: 17px;
   left: 17px;
   color: var(--color-first-accent);
 
-  &:hover {
-    box-shadow: none;
-  }
   @media (max-width: 1140px) {
     top: 9px;
     left: 10px;

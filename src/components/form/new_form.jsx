@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { StyledForm } from "./styles_forma";
+import { StyledForm } from "./styles_form";
 import { dashCreator } from "../../services/dash_creator";
 
 export const Forma = ({ items, setConfig }) => {
