@@ -7,7 +7,7 @@ import { Campaigns_with_date } from "../dashboards/campaigns_with_date";
 import { WidgetCreator } from "../form/campaigns_with_date_form";
 import { Commands } from "../commands/commands.jsx";
 import { instaDataParser } from "../../services/instaDataParser.js";
-import { CartBox, DashBox, Title } from "./chart_styled.js";
+import { DashBox, Title } from "./chart_styled.js";
 
 import DataLoader from "../data_loaderr/data_loader.jsx";
 import Loader from "../loader/loader.jsx";
@@ -28,7 +28,7 @@ export const Chart = () => {
   }, []);
 
   return (
-    <CartBox>
+    <div>
       <Title>
         Smart Dashboard
         <IconContext.Provider value={{ className: "title-icon" }}>
@@ -63,6 +63,6 @@ export const Chart = () => {
         />
         <Campaigns_with_date rootData={inputData} widget={widgets} />
       </DashBox>
-    </CartBox>
+    </div>
   );
 };

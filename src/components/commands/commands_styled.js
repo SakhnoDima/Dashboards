@@ -31,12 +31,12 @@ export const Button = styled.button`
   font-weight: 500;
   line-height: 1.5;
   padding: 20px;
-  cursor: pointer;
   background-color: white;
   border: none;
   border-radius: 8px;
-  transition: 700ms;
   box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: 700ms;
 
   &:hover {
     color: var(--color-first-accent);

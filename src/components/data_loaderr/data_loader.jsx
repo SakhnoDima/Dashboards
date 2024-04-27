@@ -1,6 +1,6 @@
 import React from "react";
 import * as XLSX from "xlsx";
-import Button from "../button/button";
+
 import { DisabledInput, FaceInput, MainBox } from "./data_loader_styled";
 import { FaUpload, FaDownload } from "react-icons/fa";
 
@@ -54,9 +54,9 @@ const DataLoader = ({ rootData, columns, setInputData, loading }) => {
   };
   return (
     <MainBox>
-      <Button disabled={loading} onClick={handleExport}>
+      <button disabled={loading} onClick={handleExport}>
         Download example <FaDownload />
-      </Button>
+      </button>
       <FaceInput>
         <span>Upload your file</span> <FaUpload />
         <DisabledInput

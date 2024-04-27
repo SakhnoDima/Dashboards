@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-export const CartBox = styled.div`
-  max-width: 1600px;
-`;
-
 export const Title = styled.h1`
   font-size: xxx-large;
   text-align: center;
